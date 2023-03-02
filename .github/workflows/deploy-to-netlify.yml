@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - name: Authenticate with private NPM package
+        run: echo "//npm.greensock.com/:_authToken=${{ secrets.GREENSOCK_TOKEN }}\n@gsap:registry=https://npm.greensock.com" > ~/.npmrc
       - name: Install dependencies
         run: npm install
       - name: Build release artifacts
