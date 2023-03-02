@@ -11,7 +11,7 @@ jobs:
       - name: Authenticate with private NPM package
         run: echo "//npm.greensock.com/:_authToken=${{ secrets.GREENSOCK_TOKEN }}\n@gsap:registry=https://npm.greensock.com" > ~/.npmrc
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build release artifacts
         run: npm run release
       - name: Deploy to Netlify
