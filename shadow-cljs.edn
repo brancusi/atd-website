@@ -13,7 +13,6 @@
    :modules
    {:app {:init-fn atd.core/init!}}
    :devtools {:reload-strategy :full
-
               :repl-pprint true
               :preloads [atd.dev]}
    :dev {:compiler-options {:output-feature-set :es6}}}}}
