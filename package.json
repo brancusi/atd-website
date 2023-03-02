@@ -26,6 +26,7 @@
     "scheduler": "^0.23.0",
     "stack-trace": "0.0.10",
     "stacktrace-js": "2.0.2",
+    "shadow-cljs": "^2.21.0",
     "ws": "7.3.1"
   },
   "devDependencies": {
