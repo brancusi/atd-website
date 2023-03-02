@@ -1,0 +1,19 @@
+{:nrepl {:port 8777}
+
+ :deps {:aliases [:cljs]}
+
+ :dev-http
+ {4200 "public"}
+
+ :builds
+ {:app
+  {:target     :browser
+   :output-dir "public/js"
+   :asset-path "/js"
+   :modules
+   {:app {:init-fn atd.core/init!}}
+   :devtools {:reload-strategy :full
+
+              :repl-pprint true
+              :preloads [atd.dev]}
+   :dev {:compiler-options {:output-feature-set :es6}}}}}

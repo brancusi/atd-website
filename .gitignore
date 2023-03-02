@@ -1,0 +1,29 @@
+/out/
+/resources/public/js/compiled/
+/target/
+/*-init.clj
+/*.log
+
+# Leiningen
+/.lein-*
+/.nrepl-port
+
+# Node.js dependencies
+/node_modules/
+
+# shadow-cljs cache, port files
+/.shadow-cljs/
+Leiningen.gitignore
+
+.lsp/.cache
+.cpcache
+
+.clj-kondo/.cache
+.calva
+
+recources/public/js/compiled/cljs-runtime
+
+.npm
+media_server
+cljs-runtime
+.DS_Store

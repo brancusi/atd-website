@@ -1,0 +1,10 @@
+{:linters {:for-indexed/missing-index {:level :error}}
+ :hooks
+ {:analyze-call {atd.utils.for-indexed/for-indexed hooks.for-indexed/for-indexed}}
+
+ :lint-as {applied-science.js-interop/let clojure.core/let
+           helix.core/defnc clojure.core/defn
+           atd.lib.defnc/defnc clojure.core/defn
+           atd.hello/inc-builder clojure.core/declare
+           mount.core/defstate clojure.core/def
+           ajax.macros/easy-api clojure.core/def}}

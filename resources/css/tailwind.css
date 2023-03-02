@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: 'Separat';
+    src: url('../fonts/Separat-Bold.woff2') format('woff2'),
+        url('../fonts/Separat-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'FiraCode';
+    src: url('../fonts/fira/FiraCode-Medium.woff2') format('woff2'),
+        url('../fonts/fira/FiraCode-Medium.woff') format('woff');
+    font-weight: medium;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+
+.font-seperate {
+    font-family: "Separat";
+}
+
+.font-fira-code {
+    font-family: "FiraCode";
+}
+
+.hero-nav-links {
+    color: #131313;
+}
