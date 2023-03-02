@@ -10,7 +10,7 @@
         thheller/shadow-cljs {:mvn/version "2.21.0"}
         metosin/reitit {:mvn/version "0.5.13"}
 
-        org.clojars.bost/closure-compiler-unshaded {:mvn/version "v20200704-2"}
+        com.google.javascript/closure-compiler-unshaded {:mvn/version "v20230206"}
         org.clojure/clojure {:mvn/version "1.11.1"}
         org.clojure/clojurescript {:mvn/version "1.11.60"}}
 
