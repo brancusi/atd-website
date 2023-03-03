@@ -15,4 +15,14 @@
    :devtools {:reload-strategy :full
               :repl-pprint true
               :preloads [atd.dev]}
+   :dev {:compiler-options {:output-feature-set :es6}}}
+
+
+  :release
+  {:target     :browser
+   :output-dir "release/js"
+   :asset-path "/js"
+   :modules
+   {:app {:init-fn atd.core/init!}}
+   :devtools {}
    :dev {:compiler-options {:output-feature-set :es6}}}}}

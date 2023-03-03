@@ -18,7 +18,6 @@
              (d/p {:class "text-4xl"} title)))
 
 (defnc app []
-
   ($ :div
      ($ hero-header {})
      ($ landing-section {:section-id "art"

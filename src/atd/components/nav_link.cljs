@@ -8,7 +8,7 @@
 (defnc nav-link [{:keys [on-click-handler title section-id]}]
   (let [ref (hooks/use-ref "link-ref")]
     (d/a {:ref ref
-          :class "hero-nav-links pointer font-fira-code text-4xl"
+          :class "hero-nav-links cursor-pointer font-fira-code text-4xl"
           :on-click (fn []
                       (on-click-handler {:section-id section-id}))}
          title)))

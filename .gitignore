@@ -27,3 +27,6 @@ recources/public/js/compiled/cljs-runtime
 media_server
 cljs-runtime
 .DS_Store
+
+# Local Netlify folder
+.netlify
