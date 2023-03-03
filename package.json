@@ -26,7 +26,6 @@
     "scheduler": "^0.23.0",
     "stack-trace": "0.0.10",
     "stacktrace-js": "2.0.2",
-    "shadow-cljs": "^2.21.0",
     "ws": "7.3.1"
   },
   "devDependencies": {
@@ -35,7 +34,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.20",
     "postcss-cli": "^10.1.0",
-    "shadow-cljs": "^2.21.0",
+    "shadow-cljs": "^2.14.4",
     "tailwindcss": "^3.2.4"
   }
 }
