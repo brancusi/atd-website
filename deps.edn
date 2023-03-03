@@ -1,24 +1,25 @@
 {:paths
  ["src"]
- :deps {expound/expound {:mvn/version "0.8.9"}
-        nrepl/nrepl {:mvn/version "1.1.0-alpha1"}
-        binaryage/devtools {:mvn/version "1.0.6"}
-        mount/mount {:mvn/version "0.1.17"}
-        lilactown/helix {:mvn/version "0.1.9"}
-        cprop/cprop {:mvn/version "0.1.18"}
-        applied-science/js-interop {:mvn/version "0.3.3"}
-        json-html/json-html {:mvn/version "0.4.7"}
-        com.taoensso/timbre {:mvn/version "5.1.2"}
-        funcool/struct {:mvn/version "1.4.0"}
-        metosin/reitit {:mvn/version "0.5.13"}
-        com.google.javascript/closure-compiler-unshaded {:mvn/version "v20230206"}
-        org.clojure/clojure {:mvn/version "1.11.1"}
-        org.clojure/clojurescript {:mvn/version "1.11.60"}}
+ :deps {}
 
  :aliases
  {:cljs
   {:extra-deps
-   {}}
+   {expound/expound {:mvn/version "0.8.9"}
+    nrepl/nrepl {:mvn/version "1.1.0-alpha1"}
+    binaryage/devtools {:mvn/version "1.0.6"}
+    mount/mount {:mvn/version "0.1.17"}
+    lilactown/helix {:mvn/version "0.1.9"}
+    cprop/cprop {:mvn/version "0.1.18"}
+    applied-science/js-interop {:mvn/version "0.3.3"}
+    json-html/json-html {:mvn/version "0.4.7"}
+    com.taoensso/timbre {:mvn/version "5.1.2"}
+    funcool/struct {:mvn/version "1.4.0"}
+    metosin/reitit {:mvn/version "0.5.13"}
+    thheller/shadow-cljs {:mvn/version "2.21.0"}
+    com.google.javascript/closure-compiler-unshaded {:mvn/version "v20230206"}
+    org.clojure/clojure {:mvn/version "1.11.1"}
+    org.clojure/clojurescript {:mvn/version "1.11.60"}}}
 
   :test
   {:extra-deps
