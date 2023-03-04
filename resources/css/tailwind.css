@@ -20,7 +20,14 @@
     font-display: swap;
 }
 
-
+@font-face {
+    font-family: 'FiraCode-SemiBold';
+    src: url('../fonts/fira/FiraCode-SemiBold.woff2') format('woff2'),
+        url('../fonts/fira/FiraCode-SemiBold.woff') format('woff');
+    font-weight: semibold;
+    font-style: normal;
+    font-display: swap;
+}
 
 .font-seperate {
     font-family: "Separat";
@@ -33,3 +40,14 @@
 .hero-nav-links {
     color: #131313;
 }
+
+.massive-title {
+    font-size: 24em;
+    font-family: "FiraCode-SemiBold";
+    color: #EAEAEA;
+    opacity: 0;
+    
+    letter-spacing: -0.1em;
+    pointer-events: false;
+}
+

@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.12",
+    "@heroicons/react": "2.0.16",
     "@tailwindcss/forms": "^0.5.3",
     "cross-env": "^7.0.3",
     "gsap": "npm:@gsap/shockingly@^3.11.4",
@@ -23,11 +24,12 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-refresh": "^0.14.0",
+    "react-svg": "16.1.5",
     "react-tracked": "^1.7.11",
     "scheduler": "^0.23.0",
+    "shadow-cljs": "^2.21.0",
     "stack-trace": "0.0.10",
     "stacktrace-js": "2.0.2",
-    "shadow-cljs": "^2.21.0",
     "ws": "7.3.1"
   },
   "devDependencies": {
