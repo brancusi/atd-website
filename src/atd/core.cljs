@@ -7,6 +7,7 @@
             ["gsap" :refer [gsap]]
             ["gsap/ScrollToPlugin" :refer [ScrollToPlugin]]
             ["gsap/ScrollTrigger" :refer [ScrollTrigger]]
+            ["gsap/SplitText" :refer [SplitText]]
             ["react-dom/client" :as rdom]
 
             [atd.lib.defnc :refer [defnc]]
@@ -39,5 +40,6 @@
   (js/console.log "Calling init")
   (.registerPlugin gsap ScrollToPlugin)
   (.registerPlugin gsap ScrollTrigger)
+  (.registerPlugin gsap SplitText)
   (mount/start)
   (start))
