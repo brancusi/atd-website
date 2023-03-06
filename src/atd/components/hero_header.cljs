@@ -2,9 +2,11 @@
   (:require ["@heroicons/react/24/outline" :as icons]
             ["gsap" :refer [gsap]]
             ["hls.js" :as Hls]
+            [atd.providers.main-provider :refer [use-main-state]]
             [atd.components.ui.playable-text :refer [playable-text]]
             [atd.components.hover-title :refer [hover-title]]
             [atd.components.nav-link :refer [nav-link]]
+            [atd.hooks.use-hover :refer [use-hover]]
             [atd.lib.defnc :refer [defnc]]
             [helix.core :refer [$]]
             [helix.dom :as d]
@@ -12,7 +14,8 @@
 
 (defnc hero-header
   []
-  (let [video-ref (hooks/use-ref "video-ref")
+  (let [[state dispatch!] (use-main-state)
+        video-ref (hooks/use-ref "video-ref")
         ref (hooks/use-ref "yo")
         hover-title-ref (hooks/use-ref "hover-title-ref")
 
@@ -27,6 +30,7 @@
                            :auto-deps
                            (fn
                              [{:keys [section-id]}]
+                             (dispatch! [:navigate! section-id])
                              (.to gsap
                                   js/window
                                   #js{:scrollTo (str "#" section-id)})))
@@ -54,6 +58,8 @@
                       (fn
                         [_]
                         (set-audio-muted! (not audio-muted?))))]
+
+    (tap> {:state state})
 
     (hooks/use-effect
      :once
@@ -107,5 +113,5 @@
                                                 "}
                                                 ($ playable-text {:text "Hi there my sweet"
                                                                   :is-playing? true})))))
-                       [["art" "something danger"] ["tech" "another fault"] ["design" "magic"]])))))
+                       [[(str "art") "something danger"] ["tech" "another fault"] ["design" "magic"]])))))
 

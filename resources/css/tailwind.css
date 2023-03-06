@@ -67,6 +67,9 @@
 }
 
 
+.orange-grad {
+    background: linear-gradient(246.25deg, #FFC700 -88.21%, #EE0909 174.55%);
+}
 
 
 
@@ -75,4 +78,8 @@
     
     background-color:rgba(197, 94, 168, 0.71);
     
+}
+
+.section-background {
+    z-index: -1;
 }

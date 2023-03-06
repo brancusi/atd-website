@@ -807,10 +807,6 @@ select {
 .border {
   border-width: 1px;
 }
-.bg-red-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
 .object-cover {
   -o-object-fit: cover;
      object-fit: cover;
@@ -951,6 +947,9 @@ select {
 }
 
 
+.orange-grad {
+    background: linear-gradient(246.25deg, #FFC700 -88.21%, #EE0909 174.55%);
+}
 
 
 
@@ -961,9 +960,9 @@ select {
     
 }
 
-
-
-
+.section-background {
+    z-index: -1;
+}
 
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
