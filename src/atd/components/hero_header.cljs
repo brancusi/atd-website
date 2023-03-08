@@ -31,9 +31,9 @@
                            (fn
                              [{:keys [section-id]}]
                              (dispatch! [:navigate! section-id])
-                             (.to gsap
-                                  js/window
-                                  #js{:scrollTo (str "#" section-id)})))
+                             #_(.to gsap
+                                    js/window
+                                    #js{:scrollTo (str "#" section-id)})))
 
         nav-mouse-over-handler (hooks/use-callback
                                 [hover-title-ref]
@@ -59,8 +59,6 @@
                         [_]
                         (set-audio-muted! (not audio-muted?))))]
 
-    (tap> {:state state})
-
     (hooks/use-effect
      :once
      (let [vidhls (new Hls)]
@@ -70,6 +68,7 @@
          (.destroy vidhls))))
 
     (d/div {:ref ref
+            :id "hero"
             :class "relative h-screen overflow-hidden items-center flex justify-items-center justify-center"}
 
            ($ hover-title

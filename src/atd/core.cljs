@@ -1,42 +1,41 @@
 (ns atd.core
-  (:require [helix.core :refer [$]]
-            [helix.hooks :as hooks]
-            [atd.providers.main-provider :refer [MainProvider]]
-            [helix.dom :as d]
-            [atd.components.hero-header :refer [hero-header]]
-            [atd.components.elements.section-background :refer [section-background]]
-            [applied-science.js-interop :as j]
-            ["gsap" :refer [gsap]]
+  (:require ["gsap" :refer [gsap]]
             ["gsap/ScrollToPlugin" :refer [ScrollToPlugin]]
             ["gsap/ScrollTrigger" :refer [ScrollTrigger]]
             ["gsap/SplitText" :refer [SplitText]]
             ["react-dom/client" :as rdom]
-            [atd.services.router :refer [router]]
-
-            [atd.reducers.requires]
 
             [atd.lib.defnc :refer [defnc]]
-            [mount.core :as mount]))
-
-(defnc landing-section [{:keys [section-id title]}]
-  (d/section {:id section-id
-              :class "relative h-screen w-full orange-grad"}
-             (d/p {:class "text-4xl"} title)))
+            [atd.providers.main-provider :refer [MainProvider]]
+            [atd.reducers.requires]
+            [atd.services.router :refer [router]]
+            [atd.views.landing-view :refer [landing-view]]
+            [helix.core :refer [$]]
+            [helix.dom :as d]
+            [helix.hooks :as hooks]
+            [mount.core :as mount]
+            [portal.web :as p]))
 
 (defnc app []
-  ($ MainProvider {:default-state {:current-section "landing"
+  ($ MainProvider {:default-state {:current-section "hero"
                                    :current-subsection "start"}}
-     ($ router)
-     ($ :div
-        ($ landing-section {:section-id "art"
-                            :title "Art"})
-        ($ hero-header)
-        ($ landing-section {:section-id "tech"
-                            :title "Tech"})
-        ($ landing-section {:section-id "design"
-                            :title "Design"}))))
+     ($ router
+        ($ landing-view))))
 
 (defonce root (rdom/createRoot (js/document.getElementById "app")))
+
+(mount/defstate ^{:on-reload :noop} portal
+  :start
+  (do
+    (js/console.log "Starting portal")
+    (p/open)
+    (add-tap #'p/submit))
+
+  :stop
+  (when portal
+    (js/console.log "Stopping portal")
+    (remove-tap #'p/submit)
+    (p/close)))
 
 (defn start
   []

@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
 @font-face {
     font-family: 'Separat';
     src: url('../fonts/Separat-Bold.woff2') format('woff2'),
@@ -56,11 +58,22 @@
     letter-spacing: -1rem;
     text-align:middle;
     text-anchor:middle;
+    
+    
+    stroke-width:10px;
+    fill: rgba(255, 239, 249, 0.8);
+  }
+
+  /* .yotext{
+    font-size:20rem;
+    letter-spacing: -1rem;
+    text-align:middle;
+    text-anchor:middle;
     stroke:rgba(25, 25, 25, 0.2);
     
     stroke-width:10px;
     fill: rgba(208, 255, 250, 0.8);
-  }
+  } */
 
 .playable-type-char {
     color: #EEEEEE
@@ -83,3 +96,16 @@
 .section-background {
     z-index: -1;
 }
+
+.cutout {
+    /* Set the text color to transparent */
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    
+    /* Set the background color to the desired color */
+    background-color: #f00;
+    
+    /* Set the background clip to text, which will make the background visible only where the text is */
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
