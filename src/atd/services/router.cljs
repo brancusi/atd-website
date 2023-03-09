@@ -19,8 +19,13 @@
     (hooks/use-layout-effect
      [is-open? comp-ref]
      (if is-open?
-       (gsap/to comp-ref {:scale (/ (win-utils/width) 50) :duration 0.4})
-       (gsap/to comp-ref {:scale 0 :duration 0.3})))
+       (gsap/to comp-ref {:x 300
+                          :y -300
+                          :width (/ (win-utils/width) 2)
+                          :height (/ (win-utils/width) 2) :duration 0.4})
+       (gsap/to comp-ref {:width 0
+                          :height 0
+                          :duration 0.3})))
 
     (d/div {:class "fixed
                   z-10
@@ -29,7 +34,7 @@
                   "}
            (d/div {:ref comp-ref
                    :class "
-                  
+                  relative
                   rounded-full
                   w-10
                   h-10
@@ -40,11 +45,11 @@
                   opacity-95
                   bg-teal-600
                            
-                           "})
-
-           (d/div {:class "z-10"} (d/p
-                                   {:class " z-20"}
-                                   "Yo son")))))
+                           "}
+                  (d/div {:class "flex  h-full border-2 justify-center items-center"}
+                         (d/div
+                          {:class "border-2 text-white"}
+                          "Yo son"))))))
 
 (defnc menu-button
   []

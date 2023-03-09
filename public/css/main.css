@@ -758,12 +758,6 @@ select {
 .z-20 {
   z-index: 20;
 }
-.z-30 {
-  z-index: 30;
-}
-.z-50 {
-  z-index: 50;
-}
 .m-1 {
   margin: 0.25rem;
 }
@@ -794,6 +788,9 @@ select {
 .h-1 {
   height: 0.25rem;
 }
+.h-1\/2 {
+  height: 50%;
+}
 .h-10 {
   height: 2.5rem;
 }
@@ -806,8 +803,14 @@ select {
 .h-screen {
   height: 100vh;
 }
+.h-2\/3 {
+  height: 66.666667%;
+}
 .w-1 {
   width: 0.25rem;
+}
+.w-1\/2 {
+  width: 50%;
 }
 .w-10 {
   width: 2.5rem;
@@ -817,6 +820,9 @@ select {
 }
 .w-full {
   width: 100%;
+}
+.w-2\/3 {
+  width: 66.666667%;
 }
 .flex-shrink {
   flex-shrink: 1;
@@ -862,8 +868,17 @@ select {
 .resize {
   resize: both;
 }
+.flex-col {
+  flex-direction: column;
+}
 .flex-wrap {
   flex-wrap: wrap;
+}
+.place-content-center {
+  place-content: center;
+}
+.content-center {
+  align-content: center;
 }
 .items-center {
   align-items: center;
@@ -899,6 +914,9 @@ select {
 }
 .border-4 {
   border-width: 4px;
+}
+.border-2 {
+  border-width: 2px;
 }
 .bg-black {
   --tw-bg-opacity: 1;
@@ -971,9 +989,6 @@ select {
 }
 .opacity-95 {
   opacity: 0.95;
-}
-.mix-blend-screen {
-  mix-blend-mode: screen;
 }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -1118,19 +1133,22 @@ select {
 }
 
 .cutout {
-    /* Set the text color to transparent */
-    -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
+    width: 200px;
+    height: 200px;
     
-    /* Set the background color to the desired color */
-    background-color: #f00;
-    
-    /* Set the background clip to text, which will make the background visible only where the text is */
+    font-size: 5rem;
+    border:             4px solid;
+    background:         rgb(59, 2, 6);
     -webkit-background-clip: text;
-    background-clip: text;
+            background-clip: text;
+  color: transparent;
   }
 
-.hover\:text-white:hover {
+  .backdrop {
+    background:             url("https://rpsthecoder.github.io/img-repo/Taitō%20by%20Jezael%20Melgoza.jpg");
+  }
+
+  .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }

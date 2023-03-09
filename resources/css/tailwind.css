@@ -98,14 +98,16 @@
 }
 
 .cutout {
-    /* Set the text color to transparent */
-    -webkit-text-fill-color: transparent;
-    text-fill-color: transparent;
+    width: 200px;
+    height: 200px;
     
-    /* Set the background color to the desired color */
-    background-color: #f00;
-    
-    /* Set the background clip to text, which will make the background visible only where the text is */
-    -webkit-background-clip: text;
+    font-size: 5rem;
+    border:             4px solid;
+    background:         rgb(59, 2, 6);
     background-clip: text;
+  color: transparent;
+  }
+
+  .backdrop {
+    background:             url("https://rpsthecoder.github.io/img-repo/Taitō%20by%20Jezael%20Melgoza.jpg");
   }
