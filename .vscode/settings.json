@@ -1,3 +1,12 @@
 {
-  "files.exclude": {}
+  "files.exclude": {},
+  "calva.customREPLCommandSnippets": [
+    {
+      "name": "Open Porta;",
+      "key": "p",
+      "repl": "cljs",
+      "ns": "user",
+      "snippet": "(p/open)"
+    }
+  ]
 }

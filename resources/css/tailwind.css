@@ -96,18 +96,3 @@
 .section-background {
     z-index: -1;
 }
-
-.cutout {
-    width: 200px;
-    height: 200px;
-    
-    font-size: 5rem;
-    border:             4px solid;
-    background:         rgb(59, 2, 6);
-    background-clip: text;
-  color: transparent;
-  }
-
-  .backdrop {
-    background:             url("https://rpsthecoder.github.io/img-repo/Taitō%20by%20Jezael%20Melgoza.jpg");
-  }

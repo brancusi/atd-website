@@ -9,47 +9,85 @@
    [atd.providers.main-provider :refer [use-main-state]]
    [atd.hooks.use-hover-animations :refer [use-hover-animations]]
    [atd.hooks.use-toggle-animations :refer [use-toggle-animations]]
+   [atd.hooks.use-window-resize :refer [use-window-resize]]
    [atd.lib.defnc :refer [defnc]]
    [atd.hooks.use-toggle :refer [use-toggle]]
    [helix.core :refer [$]]))
 
-(defnc circle-nav
-  [{:keys [is-open?]}]
+(defn calculate-menu-closed-position
+  []
+  (win-utils/width))
+
+(defn calculate-menu-open-position
+  []
+  (let [width (win-utils/width)]
+    (cond
+      (> width 1024) (- (win-utils/width) (/ (win-utils/width) 4))
+      (> width 768) (- (win-utils/width) (/ (win-utils/width) 2))
+      :else 0)))
+
+(defnc menu-link
+  [{:keys [title link]}]
+  (let [[state dispatch!] (use-main-state)]
+    (d/li
+     {:key link
+      :class "py-2
+              font-fira-code
+              cursor-pointer 
+              text-white
+              
+              sm:text-4xl
+              text-2xl
+              hover:text-fuchsia-900
+              "}
+     title)))
+
+
+(defnc flyout-menu [{:keys [is-open?]}]
   (let [comp-ref (hooks/use-ref "comp-ref")]
     (hooks/use-layout-effect
      [is-open? comp-ref]
      (if is-open?
-       (gsap/to comp-ref {:x 300
-                          :y -300
-                          :width (/ (win-utils/width) 2)
-                          :height (/ (win-utils/width) 2) :duration 0.4})
-       (gsap/to comp-ref {:width 0
-                          :height 0
-                          :duration 0.3})))
+       (gsap/to comp-ref
+                {:x (calculate-menu-open-position)
+                 :duration 0.2})
+       (gsap/to comp-ref {:x (calculate-menu-closed-position)
+                          :duration 0.2})))
 
-    (d/div {:class "fixed
-                  z-10
-                  right-16
-                  top-16
-                  "}
-           (d/div {:ref comp-ref
-                   :class "
-                  relative
-                  rounded-full
-                  w-10
-                  h-10
-                  
-                  p-2
-                  text-white
-                  
-                  opacity-95
-                  bg-teal-600
-                           
+    (use-window-resize
+     [is-open? comp-ref]
+     (fn [_]
+       (gsap/to comp-ref {:x (if is-open?
+                               (calculate-menu-open-position)
+                               (calculate-menu-closed-position))
+                          :duration 0})))
+
+    (hooks/use-effect
+     [comp-ref]
+     (gsap/to comp-ref {:x (if is-open?
+                             (calculate-menu-open-position)
+                             (calculate-menu-closed-position))
+                        :duration 0}))
+
+    (d/div {:ref comp-ref
+            :class "
+                    fixed
+                    z-20
+                    w-full
+                    md:w-1/2
+                    lg:w-1/4
+                    h-screen
+                    
+                    opacity-95
+                    bg-slate-900 
                            "}
-                  (d/div {:class "flex  h-full border-2 justify-center items-center"}
-                         (d/div
-                          {:class "border-2 text-white"}
-                          "Yo son"))))))
+           (d/ul {:class "flex flex-col h-full justify-center items-center"}
+                 ($ menu-link {:title "Services"
+                               :link "/services"})
+                 ($ menu-link {:title "About"
+                               :link "/about"})
+                 ($ menu-link {:title "Contact"
+                               :link "/contact"})))))
 
 (defnc menu-button
   []
@@ -72,7 +110,7 @@
      (d/div {:ref comp-ref
              :on-click toggle-menu-open!
              :class "fixed
-                  z-20
+                  z-30
                   cursor-pointer
                   rounded-full
                   w-10
@@ -87,7 +125,7 @@
                   bg-teal-600"}
 
             ($ icons/ArrowUpRightIcon))
-     ($ circle-nav {:is-open? menu-open?}))))
+     ($ flyout-menu {:is-open? menu-open?}))))
 
 (defnc router
   [{:keys [children]}]
@@ -95,11 +133,7 @@
 
     (hooks/use-effect
      [state]
-     (js/console.log "Firing state change in router")
-     (gsap/window-to {:scrollTo (str "#" (:current-section state))})
-     #_(.to gsap
-            js/window
-            #js{:scrollTo (str "#" (:current-section state))}))
+     (gsap/window-to {:scrollTo (str "#" (:current-section state))}))
 
     (d/div {:class "relative"}
            ($ menu-button)

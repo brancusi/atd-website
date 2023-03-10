@@ -28,7 +28,7 @@
   :start
   (do
     (js/console.log "Starting portal")
-    (p/open)
+
     (add-tap #'p/submit))
 
   :stop
