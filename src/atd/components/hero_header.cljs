@@ -87,11 +87,12 @@
                   ($
                    (if audio-muted?
                      icons/SpeakerWaveIcon
-                     icons/SpeakerXMarkIcon) {:class "w-6 h-6"}))
+                     icons/SpeakerXMarkIcon) {:className "w-6 h-6"}))
 
            (d/div {:class "absolute "}
                   (map (fn [[id writing]]
-                         (d/div {:class "flex"}
+                         (d/div {:key id
+                                 :class "flex"}
                                 (d/div {:class "relative flex"}
                                        ($ nav-link
                                           {:title id

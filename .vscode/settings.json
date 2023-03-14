@@ -2,11 +2,18 @@
   "files.exclude": {},
   "calva.customREPLCommandSnippets": [
     {
-      "name": "Open Porta;",
+      "name": "Open Portal",
       "key": "p",
       "repl": "cljs",
       "ns": "user",
       "snippet": "(p/open)"
+    },
+    {
+      "name": "Tap icon names",
+      "key": "i",
+      "repl": "cljs",
+      "ns": "user",
+      "snippet": "(tap-icon-names)"
     }
   ]
 }

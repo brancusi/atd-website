@@ -6,5 +6,15 @@
 
   (let [new-state (assoc state
                          :current-section section-id)]
-    (tap> new-state)
+    new-state))
+
+(defmethod main-reducer :enter-route!
+  [state [_ match]]
+
+  (let [new-state (assoc state
+                         :current-route match)]
+    (js/console.log {:from "inside reducer"
+                     :match match
+                     :old-state state
+                     :new-state new-state})
     new-state))

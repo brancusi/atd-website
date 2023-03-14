@@ -10,9 +10,5 @@
                              on-mouse-over-handler
                              on-mouse-out-handler]}]
   (d/div
-   {:class "w-6 h-6"
-    ;; :on-mouse-over #(on-mouse-over-handler)
-    ;; :on-mouse-out #(on-mouse-out-handler)
-    ;; :on-click #(on-click-handler)
-    }
+   {:class "w-6 h-6"}
    ($ icons/SpeakerWaveIcon)))

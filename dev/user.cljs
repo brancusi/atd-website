@@ -6,16 +6,16 @@
                                  find-doc print-doc pst source)]
    [portal.web :as p]
    [clojure.pprint :refer (pprint)]
+   ["@heroicons/react/24/outline" :as icons]
+
    [clojure.string :as str]))
 
+(defn tap-icon-names
+  []
+  (tap> (keys (js->clj icons))))
 
 (comment
-
-  (p/open)
-
-  (-> (js->clj icons)
-      keys)
+  (tap-icon-names)
 
 
-;;Keep from folding
-  )
+  (p/open))
