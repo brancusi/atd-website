@@ -41,8 +41,7 @@
         handle-layer-outro-completed (hooks/use-callback
                                       [view-stack]
                                       (fn [uuid]
-                                        (let [purged-stack (filterv (fn [l] (not= (:uuid l) uuid))
-                                                                    view-stack)]
+                                        (let [purged-stack (filterv (fn [l] (not= (:uuid l) uuid)) view-stack)]
                                           (set-view-stack! purged-stack))))]
 
     ;; Manage the view stack, and decorate the layers
