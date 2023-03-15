@@ -17,23 +17,6 @@
 (defnc section
   [{:keys [section-id children]}]
 
-  (let [comp-ref (hooks/use-ref "comp-ref")
-        [is-active? set-is-active!] (hooks/use-state false)]
-    (hooks/use-effect
-     [comp-ref]
-     (let [st (.create ScrollTrigger #js{:trigger @comp-ref
-                                         :start "top center"
-                                         :end "top 100px"
-                                         :id section-id
-                                         :onToggle (fn [self]
-                                                     (set-is-active! (.-isActive self)))
-                                         #_#_:markers true})]
-
-       (fn []
-         (.kill st))))
-
-    (d/div
-     {:ref comp-ref
-      :class (str "h-screen w-screen border-2 " (when is-active? "border-red-500"))}
-
-     children)))
+  (d/div
+   {:class (str "h-screen w-screen")}
+   children))

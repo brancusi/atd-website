@@ -34,6 +34,7 @@
         state-view-id (:name current-state-view-data)
 
         has-state-view? (keyword? state-view-id)
+
         handle-layer-intro-completed (hooks/use-callback
                                       [view-stack]
                                       (fn [uuid]))

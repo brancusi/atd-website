@@ -20,7 +20,6 @@
                        (set-last-state! false)
                        (.to gsap @ref
                             (clj->js off))))]
-    (js/console.log is-on?)
 
     (hooks/use-effect
      [is-on? last-state]
