@@ -22,6 +22,14 @@
                             (clj->js off))))]
 
     (hooks/use-effect
+     [ref]
+     (if is-on?
+       (.to gsap @ref
+            (clj->js (assoc on :duration 0)))
+       (.to gsap @ref
+            (clj->js (assoc off :duration 0)))))
+
+    (hooks/use-effect
      [is-on? last-state]
      (if (= is-on? last-state)
        :noop

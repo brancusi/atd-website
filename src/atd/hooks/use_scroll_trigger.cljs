@@ -2,19 +2,34 @@
   (:require ["gsap/ScrollTrigger" :refer [ScrollTrigger]]
             [helix.hooks :as hooks]))
 
+(defn check-positioning
+  [st]
+  (let [current-scroll (-> st .scroll)
+        trigger-start (-> st .-start)
+        trigger-end (-> st .-end)]
+    {:trigger-start trigger-start
+     :trigger-end trigger-end
+     :current-scroll current-scroll}))
+
 (defn use-scroll-trigger
   [ref & {:keys [on-toggle
                  on-enter
-                 markers?]
-          :or {markers? false}}]
+                 start
+                 end
+                 markers?
+                 debug?]
+          :or {markers? false
+               debug? false
+               start "top center"
+               end "top 100px"}}]
 
   (let [[is-active? set-is-active!] (hooks/use-state false)]
     (hooks/use-effect
      [ref]
      (let [st (.create ScrollTrigger #js{:trigger @ref
-                                         :start "top center"
-                                         :end "top 100px"
-                                         :onRefresh (fn [self])
+                                         :start start
+                                         :end end
+                                         :onRefresh (fn [_])
                                          :onEnter (fn [self]
                                                     (when on-enter
                                                       (on-enter self)))
@@ -27,8 +42,28 @@
        (fn []
          (.kill st))))
 
-    (hooks/use-layout-effect
-     [ref]
-     (when (.isInViewport ScrollTrigger @ref)
-       (set-is-active! true)))
     is-active?))
+
+
+    ;; (hooks/use-layout-effect
+    ;;  [ref]
+
+#_(when (.isInViewport ScrollTrigger @ref)
+    (set-is-active! true))
+
+    ;; (hooks/use-layout-effect
+    ;;  [ref]
+    ;;  (let [st (.create ScrollTrigger
+    ;;                    #js{:trigger @ref
+    ;;                        :onRefreshInit
+    ;;                        (fn [self]
+    ;;                          (let [{:as size-info
+    ;;                                 :keys [current-scroll trigger-start]} (check-positioning self)]
+    ;;                            (when debug?
+    ;;                              (aset js/window "ATD_DEBUG_$1" self)
+    ;;                              (tap> {:size-info size-info}))
+    ;;                            (when (> current-scroll trigger-start)
+    ;;                              (set-is-active! true))))})]
+
+    ;;    (fn []
+    ;;      (.kill st))))

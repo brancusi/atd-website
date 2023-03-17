@@ -15,5 +15,18 @@
       "ns": "user",
       "snippet": "(tap-icon-names)"
     }
+  ],
+  "calva.replConnectSequences": [
+    {
+      "name": "ATD - Website",
+      "autoSelectForJackIn": true,
+      "projectType": "shadow-cljs",
+      "cljsType": "shadow-cljs",
+      "afterCLJReplJackInCode": "(do (println \"Welcome to ATD - Website\"))",
+      "menuSelections": {
+        "cljsLaunchBuilds": [":app"],
+        "cljsDefaultBuild": ":app"
+      }
+    }
   ]
 }

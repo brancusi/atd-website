@@ -11,6 +11,7 @@
             [atd.lib.defnc :refer [defnc]]
             [atd.providers.main-provider :refer [MainProvider]]
             [atd.components.navs.side-nav :refer [side-nav]]
+            [atd.components.navs.logo-nav :refer [logo-nav]]
             [atd.reducers.requires]
             [atd.services.router :refer [router]]
 
@@ -23,6 +24,7 @@
   ($ MainProvider {:default-state {:current-section "hero"
                                    :current-subsection "start"}}
      ($ router
+        ($ logo-nav)
         ($ side-nav)
         ($ section-transitioner)
         #_($ landing-view))))

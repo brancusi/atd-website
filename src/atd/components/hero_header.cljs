@@ -77,7 +77,7 @@
 
            (d/video {:ref video-ref
                      :muted audio-muted?
-                     :autoPlay true
+                     :autoPlay false
                      :controls false
                      :loop true
                      :class "w-full h-full object-cover"})
