@@ -34,6 +34,7 @@
                     opacity-70
                     cursor-pointer
                     font-fira-code
+                    font-medium
                     z-30
                     text-xl
                     bg-white

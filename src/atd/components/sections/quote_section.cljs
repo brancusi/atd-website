@@ -8,7 +8,11 @@
             [applied-science.js-interop :as j]
             [atd.lib.defnc :refer [defnc]]))
 
-(defnc quote-section [{:keys [quote is-visible?]}]
+(defnc quote-section [{:keys [gradient-class
+                              container-ref
+                              quote
+                              header
+                              is-visible?]}]
   (let [outer-ctx (hooks/use-ref "outer-ctx")
         text-ref (hooks/use-ref "text-ref")
         [tl _] (hooks/use-state (new (.-timeline gsap) #js{:paused true}))
@@ -48,6 +52,21 @@
        (.play tl)))
 
     (d/section {:ref outer-ctx
-                :class "h-screen w-screen orange-grad font-fira-code flex items-center justify-center"}
+                :class (str "h-screen 
+                             w-screen
+                             font-medium
+                             font-fira-code
+                             flex
+                             items-center
+                             justify-center"
+                            " "
+                            (if gradient-class
+                              gradient-class
+                              "orange-grad"))}
+
                (d/div {:ref text-ref
-                       :class "text-4xl text-white flex items-center justify-center h-full w-3/4"} (d/p quote)))))
+                       :class "text-white flex items-center justify-center h-full flex-col"}
+                      (d/p {:class "text-5xl font-bold mb-2"} header)
+                      (d/div (mapv (fn [line]
+                                     (d/p {:class "text-4xl"} line))
+                                   quote))))))

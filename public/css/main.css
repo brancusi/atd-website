@@ -761,6 +761,9 @@ select {
 .m-1 {
   margin: 0.25rem;
 }
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
 .ml-4 {
   margin-left: 1rem;
 }
@@ -811,9 +814,6 @@ select {
 }
 .w-10 {
   width: 2.5rem;
-}
-.w-3\/4 {
-  width: 75%;
 }
 .w-6 {
   width: 1.5rem;
@@ -868,6 +868,18 @@ select {
 .resize {
   resize: both;
 }
+.snap-y {
+  scroll-snap-type: y var(--tw-scroll-snap-strictness);
+}
+.snap-mandatory {
+  --tw-scroll-snap-strictness: mandatory;
+}
+.snap-start {
+  scroll-snap-align: start;
+}
+.snap-center {
+  scroll-snap-align: center;
+}
 .flex-col {
   flex-direction: column;
 }
@@ -892,6 +904,12 @@ select {
 .overflow-hidden {
   overflow: hidden;
 }
+.overflow-x-scroll {
+  overflow-x: scroll;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
 .truncate {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -908,10 +926,6 @@ select {
 }
 .border-4 {
   border-width: 4px;
-}
-.border-slate-500 {
-  --tw-border-opacity: 1;
-  border-color: rgb(100 116 139 / var(--tw-border-opacity));
 }
 .border-slate-900 {
   --tw-border-opacity: 1;
@@ -933,9 +947,6 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
 }
-.bg-opacity-50 {
-  --tw-bg-opacity: 0.5;
-}
 .bg-opacity-80 {
   --tw-bg-opacity: 0.8;
 }
@@ -949,16 +960,13 @@ select {
 .p-2 {
   padding: 0.5rem;
 }
-.p-6 {
-  padding: 1.5rem;
+.px-6 {
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 .py-2 {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-.px-6 {
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
 }
 .py-3 {
   padding-top: 0.75rem;
@@ -970,6 +978,9 @@ select {
 .text-justify {
   text-align: justify;
 }
+.font-fira-code {
+  font-family: FiraCode, monospace;
+}
 .text-2xl {
   font-size: 1.5rem;
   line-height: 2rem;
@@ -978,6 +989,10 @@ select {
   font-size: 2.25rem;
   line-height: 2.5rem;
 }
+.text-5xl {
+  font-size: 3rem;
+  line-height: 1;
+}
 .text-6xl {
   font-size: 3.75rem;
   line-height: 1;
@@ -985,6 +1000,12 @@ select {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+.font-bold {
+  font-weight: 700;
+}
+.font-medium {
+  font-weight: 500;
 }
 .uppercase {
   text-transform: uppercase;
@@ -1006,17 +1027,13 @@ select {
   --tw-text-opacity: 1;
   color: rgb(203 213 225 / var(--tw-text-opacity));
 }
-.text-white {
-  --tw-text-opacity: 1;
-  color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-.text-slate-500 {
-  --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
-}
 .text-slate-900 {
   --tw-text-opacity: 1;
   color: rgb(15 23 42 / var(--tw-text-opacity));
+}
+.text-white {
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 .underline {
   text-decoration-line: underline;
@@ -1024,14 +1041,14 @@ select {
 .line-through {
   text-decoration-line: line-through;
 }
+.opacity-70 {
+  opacity: 0.7;
+}
 .opacity-90 {
   opacity: 0.9;
 }
 .opacity-95 {
   opacity: 0.95;
-}
-.opacity-70 {
-  opacity: 0.7;
 }
 .shadow {
   --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
@@ -1080,42 +1097,15 @@ select {
   a-z-a--z: ;
 }
 
-
-
-@font-face {
-    font-family: 'Separat';
-    src: url('../fonts/Separat-Bold.woff2') format('woff2'),
-        url('../fonts/Separat-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
 @font-face {
     font-family: 'FiraCode';
-    src: url('../fonts/fira/FiraCode-Medium.woff2') format('woff2'),
-        url('../fonts/fira/FiraCode-Medium.woff') format('woff');
-    font-weight: medium;
+    src: url('../fonts/fira/FiraCode-VF.woff2') format('woff2'),
+         url('../fonts/fira/FiraCode-VF.woff') format('woff');
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-}
+  }
 
-@font-face {
-    font-family: 'FiraCode-SemiBold';
-    src: url('../fonts/fira/FiraCode-SemiBold.woff2') format('woff2'),
-        url('../fonts/fira/FiraCode-SemiBold.woff') format('woff');
-    font-weight: semibold;
-    font-style: normal;
-    font-display: swap;
-}
-
-.font-seperate {
-    font-family: "Separat";
-}
-
-.font-fira-code {
-    font-family: "FiraCode";
-}
 
 .hero-nav-links {
     color: #131313;
@@ -1162,6 +1152,9 @@ select {
     background: linear-gradient(246.25deg, #FFC700 -88.21%, #EE0909 174.55%);
 }
 
+.blue-grad {
+    background: linear-gradient(246.25deg, #4260FC -88.21%, #00FF38 174.55%);
+}
 
 
 .playable-text-background {

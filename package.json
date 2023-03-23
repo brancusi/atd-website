@@ -3,15 +3,21 @@
   "scripts": {
     "ancient": "clojure -Sdeps '{:deps {com.github.liquidz/antq {:mvn/version \"RELEASE\"}}}' -m antq.core",
     "build-report": "npx shadow-cljs run shadow.cljs.build-report app target/build-report.html",
-    "shadow:watch": "shadow-cljs watch app",
-    "shadow:release": "shadow-cljs release release",
-    "postcss:build": "cross-env TAILWIND_MODE=build postcss resources/css/tailwind.css -o ./public/css/main.css --verbose",
     "postcss:watch": "cross-env TAILWIND_MODE=watch postcss resources/css/tailwind.css -o ./public/css/main.css --verbose -w",
+    "fonts:watch": "cp -rf ./resources/fonts ./public/",
+    "images:watch": "cp -rf ./resources/images ./public/",
+    "fonts:build": "cp -rf ./resources/fonts ./public/",
+    "images:build": "cp -rf ./resources/images ./public/",
+    "postcss:build": "cross-env TAILWIND_MODE=build postcss resources/css/tailwind.css -o ./public/css/main.css --verbose",
+    "shadow:release": "shadow-cljs release release",
     "postcss:release": "cross-env NODE_ENV=production postcss resources/css/tailwind.css -o ./release/css/main.css --verbose",
-    "fonts:release": "cp -rf ./public/fonts ./release/",
+    "fonts:release": "cp -rf ./resources/fonts ./release/",
+    "images:release": "cp -rf ./resources/images ./release/",
     "html:release": "cp ./public/*.html ./release/",
     "dev": "run-p -l *:watch",
-    "release": "run-s *:release"
+    "release": "run-s *:release",
+    "watch": "run-s *:watch",
+    "build": "run-s *:build"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.12",

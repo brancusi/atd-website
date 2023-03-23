@@ -16,6 +16,7 @@
                  on-enter
                  start
                  end
+                 scroll-ref
                  markers?
                  debug?]
           :or {markers? false
@@ -25,8 +26,9 @@
 
   (let [[is-active? set-is-active!] (hooks/use-state false)]
     (hooks/use-effect
-     [ref]
+     [ref scroll-ref]
      (let [st (.create ScrollTrigger #js{:trigger @ref
+
                                          :start start
                                          :end end
                                          :onRefresh (fn [_])

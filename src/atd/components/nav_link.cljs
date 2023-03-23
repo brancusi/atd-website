@@ -37,6 +37,7 @@
                   hero-nav-links
                   cursor-pointer
                   font-fira-code
+                  font-medium
                   text-6xl"
                  :on-mouse-over (fn []
                                   (set-is-hovering! true)

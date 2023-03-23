@@ -1,25 +1,11 @@
 (ns atd.components.section-transitioner
-
-  (:require
-   [atd.utils.gsap :as gsap]
-   [helix.dom :as d]
-   [atd.utils.window :as win-utils]
-
-   ["@heroicons/react/24/outline" :as icons]
-
-   [atd.utils.for-indexed :refer [for-indexed]]
-   [helix.hooks :as hooks]
-   [nano-id.core :refer [nano-id]]
-   ["gsap/ScrollTrigger" :refer [ScrollTrigger]]
-   [atd.providers.main-provider :refer [use-main-state]]
-   [atd.hooks.use-hover-animations :refer [use-hover-animations]]
-   [atd.hooks.use-toggle-animations :refer [use-toggle-animations]]
-   [atd.hooks.use-window-resize :refer [use-window-resize]]
-   [atd.views.landing-view :refer [landing-view]]
-   [atd.views.contact-view :refer [contact-view]]
-   [atd.lib.defnc :refer [defnc]]
-   [atd.hooks.use-toggle :refer [use-toggle]]
-   [helix.core :refer [$]]))
+  (:require [atd.lib.defnc :refer [defnc]]
+            [atd.providers.main-provider :refer [use-main-state]]
+            [atd.utils.for-indexed :refer [for-indexed]]
+            [helix.core :refer [$]]
+            [helix.dom :as d]
+            [helix.hooks :as hooks]
+            [nano-id.core :refer [nano-id]]))
 
 (defnc section-transitioner
   []

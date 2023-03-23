@@ -16,36 +16,29 @@
 
 (defnc landing-view []
   (let [container-ref (hooks/use-ref "container-ref")]
-    (use-scroll-snap container-ref)
+    #_(use-scroll-snap container-ref)
 
-    ($ :div {:ref container-ref}
+    ($ :div {:ref container-ref
+             :class "snap-y overflow-y-scroll"}
 
        ($ section
           {:key "hero"
            :section-id "hero"}
           ($ hero-header))
 
-       ($ quote-section {:key "art"
-                         :section-id "art"
-                         :quote "The way you do anything is the way you do everything."})
-       ($ quote-section {:key "art2"
-                         :section-id "art"
-                         :quote "The way you do anything is the way you do everything."})
-       ($ quote-section {:key "art3"
-                         :section-id "art"
-                         :quote "The way you do anything is the way you do everything."})
-       ($ quote-section {:key "art4"
-                         :section-id "art"
-                         :quote "The way you do anything is the way you do everything."})
+       ($ section
+          {:key "main-quote"
+           :section-id "main-quote"}
+          ($ quote-section {:section-id "main-quote"
+                            :quote ["The way you do anything"
+                                    "Is the way you do everything"]}))
 
        ($ section
-          {:key "tech"
-           :section-id "tech"}
-          ($ landing-section {:section-id "tech"
-                              :title "Tech"}))
-
-       ($ section
-          {:key "design"
-           :section-id "design"}
-          ($ landing-section {:section-id "design"
-                              :title "Design"})))))
+          {:key "doing"
+           :section-id "doing"}
+          ($ quote-section {:class "snap-center"
+                            :gradient-class "blue-grad"
+                            :section-id "doing"
+                            :header "Doing"
+                            :quote ["Working with people I love"
+                                    "Building beautiful things"]})))))

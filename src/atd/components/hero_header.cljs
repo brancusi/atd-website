@@ -89,7 +89,7 @@
                      icons/SpeakerWaveIcon
                      icons/SpeakerXMarkIcon) {:className "w-6 h-6"}))
 
-           (d/div {:class "absolute "}
+           (d/div {:class "absolute font-fira-code"}
                   (map (fn [[id writing]]
                          (d/div {:key id
                                  :class "flex"}
@@ -113,5 +113,7 @@
                                                 "}
                                                 ($ playable-text {:text "Hi there my sweet"
                                                                   :is-playing? true})))))
-                       [[(str "art") "something danger"] ["tech" "another fault"] ["design" "magic"]])))))
+                       [["art" "something danger"]
+                        ["tech" "another fault"]
+                        ["design" "magic"]])))))
 

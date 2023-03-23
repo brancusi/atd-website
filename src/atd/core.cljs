@@ -5,19 +5,14 @@
             ["gsap/ScrollTrigger" :refer [ScrollTrigger]]
             ["gsap/SplitText" :refer [SplitText]]
             ["react-dom/client" :as rdom]
+            [atd.components.navs.logo-nav :refer [logo-nav]]
+            [atd.components.navs.side-nav :refer [side-nav]]
             [atd.components.section-transitioner :refer [section-transitioner]]
-
-
             [atd.lib.defnc :refer [defnc]]
             [atd.providers.main-provider :refer [MainProvider]]
-            [atd.components.navs.side-nav :refer [side-nav]]
-            [atd.components.navs.logo-nav :refer [logo-nav]]
             [atd.reducers.requires]
             [atd.services.router :refer [router]]
-
             [helix.core :refer [$]]
-            [helix.dom :as d]
-            [helix.hooks :as hooks]
             [mount.core :as mount]))
 
 (defnc app []
@@ -26,29 +21,20 @@
      ($ router
         ($ logo-nav)
         ($ side-nav)
-        ($ section-transitioner)
-        #_($ landing-view))))
+        ($ section-transitioner))))
 
 (defonce root (rdom/createRoot (js/document.getElementById "app")))
 
 (defn start
   []
-  (js/console.log "Calling start")
-
   ;; Register all gsap plugins
   (.registerPlugin gsap ScrollToPlugin)
   (.registerPlugin gsap ScrollTrigger)
   (.registerPlugin gsap SplitText)
 
-
-
   (.render root ($ app)))
-
-
 
 (defn init!
   []
-  (js/console.log "Calling init")
-
   (mount/start)
   (start))

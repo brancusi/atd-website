@@ -2,42 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-@font-face {
-    font-family: 'Separat';
-    src: url('../fonts/Separat-Bold.woff2') format('woff2'),
-        url('../fonts/Separat-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
-}
-
 @font-face {
     font-family: 'FiraCode';
-    src: url('../fonts/fira/FiraCode-Medium.woff2') format('woff2'),
-        url('../fonts/fira/FiraCode-Medium.woff') format('woff');
-    font-weight: medium;
+    src: url('../fonts/fira/FiraCode-VF.woff2') format('woff2'),
+         url('../fonts/fira/FiraCode-VF.woff') format('woff');
+    font-weight: 100 900;
     font-style: normal;
     font-display: swap;
-}
+  }
 
-@font-face {
-    font-family: 'FiraCode-SemiBold';
-    src: url('../fonts/fira/FiraCode-SemiBold.woff2') format('woff2'),
-        url('../fonts/fira/FiraCode-SemiBold.woff') format('woff');
-    font-weight: semibold;
-    font-style: normal;
-    font-display: swap;
-}
-
-.font-seperate {
-    font-family: "Separat";
-}
-
-.font-fira-code {
-    font-family: "FiraCode";
-}
 
 .hero-nav-links {
     color: #131313;
@@ -84,6 +57,9 @@
     background: linear-gradient(246.25deg, #FFC700 -88.21%, #EE0909 174.55%);
 }
 
+.blue-grad {
+    background: linear-gradient(246.25deg, #4260FC -88.21%, #00FF38 174.55%);
+}
 
 
 .playable-text-background {
