@@ -26,7 +26,7 @@
     pointer-events: false;
 }
 
-.yotext{
+.flash-text{
     font-size:20rem;
     letter-spacing: -1rem;
     text-align:middle;
@@ -59,6 +59,10 @@
 
 .blue-grad {
     background: linear-gradient(246.25deg, #4260FC -88.21%, #00FF38 174.55%);
+}
+
+.purple-grad {
+    background: linear-gradient(246.25deg, #8D43A7 -88.21%, #FC4242 174.55%);
 }
 
 

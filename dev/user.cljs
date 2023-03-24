@@ -14,18 +14,18 @@
 
    [clojure.string :as str]))
 
-(mount/defstate ^{:on-reload :noop} portal
-  :start
-  (do
-    (js/console.log "Starting portal")
-    (add-tap #'p/submit)
-    (p/open))
+#_(mount/defstate ^{:on-reload :noop} portal
+    :start
+    (do
+      (js/console.log "Starting portal")
+      (add-tap #'p/submit)
+      (p/open))
 
-  :stop
-  (when portal
-    (js/console.log "Stopping portal")
-    (remove-tap #'p/submit)
-    (p/close)))
+    :stop
+    (when portal
+      (js/console.log "Stopping portal")
+      (remove-tap #'p/submit)
+      (p/close)))
 
 (defn tap-icon-names
   []
@@ -33,6 +33,5 @@
 
 (comment
   (tap-icon-names)
-
 
   (p/open))

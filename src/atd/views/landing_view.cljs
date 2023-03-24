@@ -1,6 +1,7 @@
 (ns atd.views.landing-view
   (:require [atd.components.section :refer [section]]
             [atd.components.sections.quote-section :refer [quote-section]]
+            [atd.components.sections.what-section :refer [what-section]]
             [atd.hooks.use-scroll-snap :refer [use-scroll-snap]]
             [atd.lib.defnc :refer [defnc]]
             [atd.reducers.requires]
@@ -19,7 +20,7 @@
     #_(use-scroll-snap container-ref)
 
     ($ :div {:ref container-ref
-             :class "snap-y overflow-y-scroll"}
+             :class ""}
 
        ($ section
           {:key "hero"
@@ -36,9 +37,17 @@
        ($ section
           {:key "doing"
            :section-id "doing"}
-          ($ quote-section {:class "snap-center"
+          ($ quote-section {:class ""
                             :gradient-class "blue-grad"
                             :section-id "doing"
                             :header "Doing"
                             :quote ["Working with people I love"
-                                    "Building beautiful things"]})))))
+                                    "Building beautiful things"]}))
+
+       ($ section
+          {:key "what"
+           :section-id "what"}
+          ($ what-section {:class ""
+                           :force-on? false
+                           :gradient-class "purple-grad"
+                           :section-id "what"})))))

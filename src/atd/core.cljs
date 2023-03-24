@@ -27,6 +27,7 @@
 
 (defn start
   []
+  (tap> "Starting app")
   ;; Register all gsap plugins
   (.registerPlugin gsap ScrollToPlugin)
   (.registerPlugin gsap ScrollTrigger)

@@ -746,6 +746,12 @@ select {
 .top-16 {
   top: 4rem;
 }
+.left-0 {
+  left: 0px;
+}
+.top-0 {
+  top: 0px;
+}
 .isolate {
   isolation: isolate;
 }
@@ -769,6 +775,9 @@ select {
 }
 .mt-4 {
   margin-top: 1rem;
+}
+.mr-4 {
+  margin-right: 1rem;
 }
 .block {
   display: block;
@@ -824,6 +833,18 @@ select {
 .w-screen {
   width: 100vw;
 }
+.w-16 {
+  width: 4rem;
+}
+.w-24 {
+  width: 6rem;
+}
+.w-48 {
+  width: 12rem;
+}
+.w-32 {
+  width: 8rem;
+}
 .flex-shrink {
   flex-shrink: 1;
 }
@@ -871,9 +892,6 @@ select {
 .snap-y {
   scroll-snap-type: y var(--tw-scroll-snap-strictness);
 }
-.snap-mandatory {
-  --tw-scroll-snap-strictness: mandatory;
-}
 .snap-start {
   scroll-snap-align: start;
 }
@@ -895,6 +913,11 @@ select {
 .justify-items-center {
   justify-items: center;
 }
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
 .self-baseline {
   align-self: baseline;
 }
@@ -903,9 +926,6 @@ select {
 }
 .overflow-hidden {
   overflow: hidden;
-}
-.overflow-x-scroll {
-  overflow-x: scroll;
 }
 .overflow-y-scroll {
   overflow-y: scroll;
@@ -926,6 +946,9 @@ select {
 }
 .border-4 {
   border-width: 4px;
+}
+.border-2 {
+  border-width: 2px;
 }
 .border-slate-900 {
   --tw-border-opacity: 1;
@@ -1121,7 +1144,7 @@ select {
     pointer-events: false;
 }
 
-.yotext{
+.flash-text{
     font-size:20rem;
     letter-spacing: -1rem;
     text-align:middle;
@@ -1154,6 +1177,10 @@ select {
 
 .blue-grad {
     background: linear-gradient(246.25deg, #4260FC -88.21%, #00FF38 174.55%);
+}
+
+.purple-grad {
+    background: linear-gradient(246.25deg, #8D43A7 -88.21%, #FC4242 174.55%);
 }
 
 

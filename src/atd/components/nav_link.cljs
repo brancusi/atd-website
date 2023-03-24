@@ -25,7 +25,7 @@
               :on-click (fn []
                           (on-click-handler {:section-id section-id}))}
 
-             (d/text {:class "yotext"
+             (d/text {:class "flash-text"
 
                       :text-anchor "start"
                       :alignment-baseline "middle"
@@ -53,7 +53,7 @@
 
                           :height "1em"}
 
-                         (d/text {:class "yotext"
+                         (d/text {:class "flash-text"
 
                                   :text-anchor "start"
                                   :alignment-baseline "middle"

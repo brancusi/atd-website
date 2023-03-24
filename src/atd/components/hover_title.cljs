@@ -11,7 +11,7 @@
          (d/svg {:class "justify-self-start"
                  :height "100%"
                  :width "100%"}
-                (d/text {:class "yotext font-fira-code font-bold"
+                (d/text {:class "flash-text font-fira-code font-bold"
                          :text-anchor "start"
                          :alignment-baseline "middle"
                          :y "50%"

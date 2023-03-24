@@ -1,12 +1,13 @@
 (ns atd.components.hero-header
   (:require ["@heroicons/react/24/outline" :as icons]
             ["gsap" :refer [gsap]]
-            ["hls.js" :as Hls]
+            ["hls.js" :as Hls :refer [Events]]
             [atd.providers.main-provider :refer [use-main-state]]
             [atd.components.ui.playable-text :refer [playable-text]]
             [atd.components.hover-title :refer [hover-title]]
             [atd.components.nav-link :refer [nav-link]]
             [atd.hooks.use-hover :refer [use-hover]]
+            [atd.hooks.use-can-play-background-video :refer [use-can-play-background-video]]
             [atd.lib.defnc :refer [defnc]]
             [helix.core :refer [$]]
             [helix.dom :as d]
@@ -16,7 +17,10 @@
   []
   (let [[state dispatch!] (use-main-state)
         video-ref (hooks/use-ref "video-ref")
+        video-test-container (hooks/use-ref "video-test-container")
         ref (hooks/use-ref "yo")
+        {:keys [can-play?
+                check-completed?]} (use-can-play-background-video video-test-container)
         hover-title-ref (hooks/use-ref "hover-title-ref")
 
         #_#_[current-section set-current-section!] (hooks/use-state nil)
@@ -60,12 +64,22 @@
                         (set-audio-muted! (not audio-muted?))))]
 
     (hooks/use-effect
-     :once
-     (let [vidhls (new Hls)]
-       (.loadSource vidhls "https://stream.mux.com/l02cq1uS4sXBEGdQJNdYVDL7KoTNEreRDJymmk01NSN7c.m3u8")
-       (.attachMedia vidhls @video-ref)
-       (fn []
-         (.destroy vidhls))))
+     [check-completed? can-play?]
+     (when (and check-completed? can-play?)
+       (let [vidhls (new Hls)]
+         (.on vidhls (aget Events "MEDIA_ATTACHED") (fn []
+                                                      (tap> "Media Attached")))
+
+         (.on vidhls (aget Events "ERROR") (fn []
+                                             (tap> "Error yo")))
+
+         (.on vidhls (aget Events "MEDIA_ATTACHED") (fn []
+                                                      (tap> "Media Attached")))
+
+         (.loadSource vidhls "https://stream.mux.com/l02cq1uS4sXBEGdQJNdYVDL7KoTNEreRDJymmk01NSN7c.m3u8")
+         (.attachMedia vidhls @video-ref)
+         (fn []
+           (.destroy vidhls)))))
 
     (d/div {:ref ref
             :id "hero"
@@ -75,12 +89,27 @@
               {:hover-title-ref hover-title-ref
                :title current-section})
 
-           (d/video {:ref video-ref
+           (d/video {:ref video-test-container
                      :muted audio-muted?
-                     :autoPlay false
+                     :autoPlay true
                      :controls false
-                     :loop true
-                     :class "w-full h-full object-cover"})
+                     :loop false
+                     :class "absolute w-1 h-1 top-0 left-0"})
+
+           (when check-completed?
+             (if can-play?
+               (d/video {:ref video-ref
+                         :muted audio-muted?
+                         :autoPlay true
+                         :controls false
+                         :loop true
+                         :class "w-full h-full object-cover"})
+
+
+               (d/img {:src "images/graphics/test.png"
+                       :class "object-cover w-full h-full"})
+               #_(d/div (str "check-completed?" check-completed?
+                             "Can play: " can-play?))))
 
            (d/div {:class "p-2 cursor-pointer absolute right-4 bottom-4 flex middle hover:text-white text-slate-300"
                    :on-click toggle-audio}
@@ -116,4 +145,3 @@
                        [["art" "something danger"]
                         ["tech" "another fault"]
                         ["design" "magic"]])))))
-
