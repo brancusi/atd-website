@@ -10,17 +10,14 @@
      :once
      (let [vidhls (new Hls)]
        (.on vidhls (aget Events "MEDIA_ATTACHED") (fn []
+                                                    (tap> "Media Attached")
                                                     (set-can-play! true)
-                                                    (set-check-completed! true)
-                                                    (tap> "Media Attached")))
+                                                    (set-check-completed! true)))
 
        (.on vidhls (aget Events "ERROR") (fn []
+                                           (tap> "Error yo")
                                            (set-can-play! false)
-                                           (set-check-completed! true)
-                                           (tap> "Error yo")))
-
-       (.on vidhls (aget Events "MEDIA_ATTACHED") (fn []
-                                                    (tap> "Media Attached")))
+                                           (set-check-completed! true)))
 
        (.loadSource vidhls "https://stream.mux.com/auOPdAVC9yXYZS6LYNDlLCw6h5AgmtYYaaDvIlFIB02c.m3u8")
        (.attachMedia vidhls @container-ref)

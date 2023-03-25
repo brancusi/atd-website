@@ -27,9 +27,6 @@
         [current-section set-current-section!] (hooks/use-state nil)
         [audio-muted? set-audio-muted!] (hooks/use-state true)
 
-        listener (fn []
-                   (.play @video-ref))
-
         nav-click-handler (hooks/use-callback
                            :auto-deps
                            (fn
@@ -67,9 +64,6 @@
      [check-completed? can-play?]
      (when (and check-completed? can-play?)
        (let [vidhls (new Hls)]
-         (.on vidhls (aget Events "MEDIA_ATTACHED") (fn []
-                                                      (tap> "Media Attached")))
-
          (.on vidhls (aget Events "ERROR") (fn []
                                              (tap> "Error yo")))
 
@@ -94,7 +88,7 @@
                      :autoPlay true
                      :controls false
                      :loop false
-                     :class "absolute w-1 h-1 top-0 left-0"})
+                     :class "absolute opacity-0 w-1 h-1 top-0 left-0"})
 
            (when check-completed?
              (if can-play?
@@ -105,11 +99,8 @@
                          :loop true
                          :class "w-full h-full object-cover"})
 
-
                (d/img {:src "images/graphics/test.png"
-                       :class "object-cover w-full h-full"})
-               #_(d/div (str "check-completed?" check-completed?
-                             "Can play: " can-play?))))
+                       :class "object-cover w-full h-full"})))
 
            (d/div {:class "p-2 cursor-pointer absolute right-4 bottom-4 flex middle hover:text-white text-slate-300"
                    :on-click toggle-audio}

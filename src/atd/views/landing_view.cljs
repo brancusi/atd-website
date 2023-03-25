@@ -2,6 +2,7 @@
   (:require [atd.components.section :refer [section]]
             [atd.components.sections.quote-section :refer [quote-section]]
             [atd.components.sections.what-section :refer [what-section]]
+            [atd.components.sections.contact-section :refer [contact-section]]
             [atd.hooks.use-scroll-snap :refer [use-scroll-snap]]
             [atd.lib.defnc :refer [defnc]]
             [atd.reducers.requires]
@@ -50,4 +51,11 @@
           ($ what-section {:class ""
                            :force-on? false
                            :gradient-class "purple-grad"
-                           :section-id "what"})))))
+                           :section-id "what"}))
+
+
+       ($ section
+          {:key "contact"
+           :section-id "contact"}
+          ($ contact-section {:force-on? true
+                              :section-id "contact"})))))
