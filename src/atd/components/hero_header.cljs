@@ -8,6 +8,7 @@
             [atd.components.nav-link :refer [nav-link]]
             [atd.hooks.use-hover :refer [use-hover]]
             [atd.hooks.use-can-play-background-video :refer [use-can-play-background-video]]
+            [atd.components.elements.lazy-image :refer [lazy-image]]
             [atd.lib.defnc :refer [defnc]]
             [helix.core :refer [$]]
             [helix.dom :as d]
@@ -23,7 +24,6 @@
                 check-completed?]} (use-can-play-background-video video-test-container)
         hover-title-ref (hooks/use-ref "hover-title-ref")
 
-        #_#_[current-section set-current-section!] (hooks/use-state nil)
         [current-section set-current-section!] (hooks/use-state nil)
         [audio-muted? set-audio-muted!] (hooks/use-state true)
 
@@ -31,10 +31,7 @@
                            :auto-deps
                            (fn
                              [{:keys [section-id]}]
-                             (dispatch! [:navigate! section-id])
-                             #_(.to gsap
-                                    js/window
-                                    #js{:scrollTo (str "#" section-id)})))
+                             (dispatch! [:navigate! section-id])))
 
         nav-mouse-over-handler (hooks/use-callback
                                 [hover-title-ref]
@@ -79,6 +76,7 @@
             :id "hero"
             :class "relative h-screen overflow-hidden items-center flex justify-items-center justify-center"}
 
+
            ($ hover-title
               {:hover-title-ref hover-title-ref
                :title current-section})
@@ -94,13 +92,17 @@
              (if can-play?
                (d/video {:ref video-ref
                          :muted audio-muted?
-                         :autoPlay true
+                         :autoPlay false
                          :controls false
                          :loop true
                          :class "w-full h-full object-cover"})
+               ($ lazy-image {:src "https://assets.imgix.net/unsplash/bridge.jpg?w=640&h=640&fit=crop"
+                              :fp 2
+                              :should-load? true})
 
-               (d/img {:src "images/graphics/test.png"
-                       :class "object-cover w-full h-full"})))
+
+               #_(d/img {:src "https://atddev.imgix.net/az-portrait.tif?fm=jpg&w=1500&q=5"
+                         :class "object-cover w-full h-full"})))
 
            (d/div {:class "p-2 cursor-pointer absolute right-4 bottom-4 flex middle hover:text-white text-slate-300"
                    :on-click toggle-audio}
@@ -133,6 +135,6 @@
                                                 "}
                                                 ($ playable-text {:text "Hi there my sweet"
                                                                   :is-playing? true})))))
-                       [["art" "something danger"]
-                        ["tech" "another fault"]
-                        ["design" "magic"]])))))
+                       [["art" "art without tech is a trap of the generation"]
+                        ["tech" "tech without design is asking for trouble"]
+                        ["design" "design without art is the termination"]])))))

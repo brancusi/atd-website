@@ -68,5 +68,6 @@
                        :class "text-white flex items-center justify-center h-full flex-col"}
                       (d/p {:class "text-5xl font-bold mb-2"} header)
                       (d/div (mapv (fn [line]
-                                     (d/p {:class "text-4xl"} line))
+                                     (d/p {:key line
+                                           :class "text-4xl"} line))
                                    quote))))))

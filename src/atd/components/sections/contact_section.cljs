@@ -48,39 +48,33 @@
 
     (d/section {:ref outer-ctx
                 :class "h-screen 
-                        w-screen
-                        font-medium
-                        font-fira-code
-                        flex
-                        items-center
-                        bg-black
-                        relative
-                        
-                        "}
-               (d/img {:src "images/portraits/az.jpg"
+                    w-screen
+                    flex
+                    items-center
+                    bg-black
+                    relative"}
+               (d/img {:src "https://atddev.imgix.net/az-portrait.tif?fm=jpg&w=1500&q=60"
                        :class "z-10
-                               object-cover w-full h-full absolute"})
+                           object-cover w-full h-full absolute"})
 
                (d/div
-                {:class "
-                         w-1/4
-                         
-                         font-fira-code
-                         font-light
-                         text-white 
-                         flex
-                         flex-col
-                         space-y-8
-                         
-                         z-20"}
-                (d/input {:class "text-black bg-white border-8 border-teal-500 outline-none p-4 bg-opacity-90 focus:bg-opacity-100"
-                          :placeholder "Name"})
-                (d/input {:class "text-black bg-white border-8 border-teal-500 outline-none p-4 bg-opacity-90 focus:bg-opacity-100"
-                          :placeholder "Email"})
-                (d/textarea {:class "text-black bg-white border-8 border-teal-500 outline-none p-4 bg-opacity-90 focus:bg-opacity-100"
-                             :rows 10
-                             :placeholder "Tell Me"})
-                (d/button
-                 {:class "bg-red-500 w-full h-14"
-                  :placeholder "Tell Me"}
-                 "Do it")))))
+                {:class "flex flex-col w-1/2 z-20 items-center justify-center"} ; Add items-center and justify-center here
+
+                (d/div
+                 {:class "flex flex-col w-auto justify-center"} ; Change flex-1 to w-auto
+                 (d/div
+                  {:class "font-fira-code
+                      font-light
+                      text-white
+                      text-4xl"}
+                  "Let's play")
+
+                 (d/a
+                  {:href "mailto:az@atd.dev?subject=Let's%20play"
+                   :target "_blank"
+                   :class "font-fira-code
+                      font-light
+                      text-fuchsia-600 
+                      text-4xl
+                      "}
+                  "az@atd.dev"))))))
