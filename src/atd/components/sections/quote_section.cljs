@@ -19,7 +19,7 @@
 
         on-active-callback (fn [_] (.play tl))
 
-        is-active? (use-scroll-trigger outer-ctx)]
+        [visited? is-active?] (use-scroll-trigger outer-ctx)]
 
     (hooks/use-layout-effect
      [quote text-ref is-visible?]
@@ -65,9 +65,9 @@
                               "orange-grad"))}
 
                (d/div {:ref text-ref
-                       :class "text-white flex items-center justify-center h-full flex-col"}
-                      (d/p {:class "text-5xl font-bold mb-2"} header)
+                       :class "text-white flex items-center justify-center h-full flex-col md:w-3/4 w-3/4"}
+                      (d/p {:class "text-4xl md:text-5xl font-bold mb-2"} header)
                       (d/div (mapv (fn [line]
                                      (d/p {:key line
-                                           :class "text-4xl"} line))
+                                           :class "text-2xl md:text-4xl"} line))
                                    quote))))))

@@ -14,7 +14,7 @@
   (let [outer-ctx (hooks/use-ref "outer-ctx")
         text-ref (hooks/use-ref "text-ref")
         [tl _] (hooks/use-state (new (.-timeline gsap) #js{:paused true}))
-        is-active? (use-scroll-trigger outer-ctx)]
+        [visited? is-active?] (use-scroll-trigger outer-ctx)]
 
     (hooks/use-layout-effect
      [text-ref is-visible?]

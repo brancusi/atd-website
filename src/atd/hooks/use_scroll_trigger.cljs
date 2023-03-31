@@ -24,7 +24,8 @@
                start "top center"
                end "top 100px"}}]
 
-  (let [[is-active? set-is-active!] (hooks/use-state false)]
+  (let [[is-active? set-is-active!] (hooks/use-state false)
+        [visited? set-visited!] (hooks/use-state false)]
     (hooks/use-effect
      [ref scroll-ref]
      (let [st (.create ScrollTrigger #js{:trigger @ref
@@ -33,6 +34,7 @@
                                          :end end
                                          :onRefresh (fn [_])
                                          :onEnter (fn [self]
+                                                    (set-visited! true)
                                                     (when on-enter
                                                       (on-enter self)))
                                          :onToggle (fn [self]
@@ -44,7 +46,7 @@
        (fn []
          (.kill st))))
 
-    is-active?))
+    [visited? is-active?]))
 
 
     ;; (hooks/use-layout-effect

@@ -14,10 +14,10 @@
 (defnc logo-nav
   []
   (let [comp-ref (hooks/use-ref "comp-ref")
-        active? (use-scroll-trigger comp-ref :start (fn [] (- (win-utils/height) (/ (win-utils/height) 8)))
-                                    :end "1000000px"
-                                    :markers? false
-                                    :debug? false)]
+        [visited? is-active?] (use-scroll-trigger comp-ref :start (fn [] (- (win-utils/height) (/ (win-utils/height) 8)))
+                                                  :end "1000000px"
+                                                  :markers? false
+                                                  :debug? false)]
     (use-hover-animations comp-ref
                           :over {:opacity 1}
                           :out {:opacity 0.7})
@@ -25,8 +25,8 @@
     (use-toggle-animations
      comp-ref
      :on {:y 0}
-     :off {:y -100}
-     :is-on? active?
+     :off {:y -150}
+     :is-on? is-active?
      :initial false)
 
     (d/div {:ref comp-ref
@@ -37,15 +37,18 @@
                     font-medium
                     z-30
                     text-xl
-                    bg-white
-                    bg-opacity-80
+                    bg-red-500
+                    bg-opacity-90
                     ml-4
                     mt-4
-                    text-slate-900
+                    text-white
                     border-4
-                    border-slate-900
-                    px-6
-                    py-3 "} (str "[:art :tech :design]"))))
+                    border-white
+                    px-3 md:px-6
+                    py-3 md:py-3 
+                    w-1/3
+                    md:w-auto
+                    "} (str "[:art :tech :design]"))))
 
 
 
