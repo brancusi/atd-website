@@ -1,6 +1,6 @@
 {:nrepl {:port 8777}
 
- :deps {:aliases [:cljs :dev]}
+ :deps {:aliases [:dev]}
 
  :dev-http
  {4200 "public"}
@@ -15,8 +15,7 @@
    :devtools {:reload-strategy :full
               :repl-pprint true
               :preloads [atd.dev user]}
-   :dev {:compiler-options {:output-feature-set :es6}}}
-
+   :dev {:compiler-options {:output-feature-set :es7}}}
 
   :release
   {:target     :browser
@@ -24,5 +23,6 @@
    :asset-path "/js"
    :modules
    {:app {:init-fn atd.core/init!}}
-   :devtools {}
-   :dev {:compiler-options {:output-feature-set :es6}}}}}
+   :compiler-options {:output-feature-set :es7
+                      :optimizations :advanced
+                      :pretty-print false}}}}

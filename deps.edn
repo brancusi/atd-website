@@ -1,31 +1,24 @@
 {:paths
  ["src"]
- :deps {}
+ :deps {mount/mount {:mvn/version "0.1.17"}
+        lilactown/helix {:mvn/version "0.1.9"}
+        applied-science/js-interop {:mvn/version "0.3.3"}
+        nano-id/nano-id {:mvn/version "1.0.0"}
+        metosin/reitit {:mvn/version "0.6.0"}
+        org.clojure/clojurescript {:mvn/version "1.11.60"}}
 
  :aliases
- {:cljs
-  {:extra-deps
+ {:dev
+  {:extra-paths ["dev"]
+   :extra-deps
    {expound/expound {:mvn/version "0.8.9"}
-    org.clojars.quoll/asami {:mvn/version "2.3.3"}
     nrepl/nrepl {:mvn/version "1.1.0-alpha1"}
     binaryage/devtools {:mvn/version "1.0.6"}
-    mount/mount {:mvn/version "0.1.17"}
-    lilactown/helix {:mvn/version "0.1.9"}
-    cprop/cprop {:mvn/version "0.1.18"}
-    applied-science/js-interop {:mvn/version "0.3.3"}
-    nano-id/nano-id {:mvn/version "1.0.0"}
-
     com.taoensso/timbre {:mvn/version "5.1.2"}
-
-    metosin/reitit {:mvn/version "0.6.0"}
     thheller/shadow-cljs {:mvn/version "2.21.0"}
     com.google.javascript/closure-compiler-unshaded {:mvn/version "v20230206"}
     org.clojure/clojure {:mvn/version "1.11.1"}
-    org.clojure/clojurescript {:mvn/version "1.11.60"}}}
-
-  :dev {:extra-paths ["dev"]
-        :extra-deps
-        {djblue/portal {:mvn/version "0.36.0"}}}
+    djblue/portal {:mvn/version "0.36.0"}}}
 
   :test
   {:extra-deps

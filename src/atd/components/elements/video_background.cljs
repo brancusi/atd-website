@@ -49,8 +49,9 @@
            (when check-completed?
              (if can-play?
                (d/video {:ref video-ref
+                         :poster "https://assets.imgix.net/unsplash/bridge.jpg?w=640&h=640&fit=crop"
                          :muted audio-muted?
-                         :autoPlay true
+                         :autoPlay false
                          :controls false
                          :loop true
                          :class "w-full h-full object-cover"})

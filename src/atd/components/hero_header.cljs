@@ -3,6 +3,8 @@
             [atd.components.elements.video-background :refer [video-background]]
             [atd.components.hover-title :refer [hover-title]]
             [atd.components.nav-link :refer [nav-link]]
+            [atd.components.elements.rotating-lazy-image-gallery :refer [rotating-lazy-image-gallery]]
+
             [atd.lib.defnc :refer [defnc]]
             [atd.providers.main-provider :refer [use-main-state]]
             [helix.core :refer [$]]
@@ -14,6 +16,18 @@
   [["art" "art without tech is a trap of the generation"]
    ["tech" "tech without design is asking for trouble"]
    ["design" "design without art is the termination"]])
+
+(def images
+  [{:src "https://atddev.imgix.net/output-lg.gif?fm=jpg&w=1500&q=60"
+    :opts {}}
+   {:src "https://atddev.imgix.net/1.jpg?fm=jpg&h=1500&q=60"
+    :opts {}}
+   {:src "https://atddev.imgix.net/2.jpg?fm=jpg&h=1500&q=60"
+    :opts {}}
+   {:src "https://atddev.imgix.net/3.jpg?fm=jpg&h=1500&q=60"
+    :opts {}}
+   {:src "https://atddev.imgix.net/4.jpg?fm=jpg&h=1500&q=60"
+    :opts {}}])
 
 (defnc hero-menu
   [{:keys [data over out click]}]
@@ -92,7 +106,9 @@
                            relative 
                            flex items-center
                            justify-items-center justify-center"}
-                  ($ lazy-image {:class "w-full h-full object-cover"
-                                 :src "https://assets.imgix.net/unsplash/bridge.jpg"
-                                 :focal-point [0.4, 0.7, 1]
-                                 :should-load? true})))))
+                  ($ rotating-lazy-image-gallery {:images images
+                                                  :should-load? true})
+                  #_($ lazy-image {:class "w-full h-full object-cover"
+                                   :src "https://atddev.imgix.net/output-lg.gif?fm=jpg&w=1500&q=60"
+                                   :focal-point [0.4, 0.7, 1]
+                                   :should-load? true})))))
