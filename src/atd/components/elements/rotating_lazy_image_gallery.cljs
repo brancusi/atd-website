@@ -3,7 +3,6 @@
             [helix.hooks :as hooks]
             [helix.dom :as d]
             [atd.components.elements.lazy-image :refer [lazy-image]]
-
             [atd.lib.defnc :refer [defnc]]))
 
 (defnc rotating-lazy-image-gallery
