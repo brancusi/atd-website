@@ -22,7 +22,7 @@
           :or {markers? false
                debug? false
                start "top center"
-               end "top 100px"}}]
+               end "bottom"}}]
 
   (let [[is-active? set-is-active!] (hooks/use-state false)
         [visited? set-visited!] (hooks/use-state false)]

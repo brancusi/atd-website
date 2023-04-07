@@ -48,9 +48,6 @@
     fill: rgba(208, 255, 250, 0.8);
   } */
 
-.playable-type-char {
-    color: #EEEEEE
-}
 
 
 .orange-grad {
@@ -59,6 +56,10 @@
 
 .blue-grad {
     background: linear-gradient(246.25deg, #4260FC -88.21%, #00FF38 174.55%);
+}
+
+.grey-grad {
+    background: linear-gradient(246.25deg, #222222 -88.21%, #0F0F0F 174.55%);
 }
 
 .purple-grad {

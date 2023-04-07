@@ -20,7 +20,7 @@
                                    :current-subsection "start"}}
      ($ router
         ($ logo-nav)
-        ($ side-nav)
+        #_($ side-nav)
         ($ section-transitioner))))
 
 (defonce root (rdom/createRoot (js/document.getElementById "app")))

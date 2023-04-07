@@ -15,7 +15,8 @@
    :devtools {:reload-strategy :full
               :repl-pprint true
               :preloads [atd.dev user]}
-   :dev {:compiler-options {:output-feature-set :es7}}}
+   :dev {:compiler-options {:output-feature-set :es7
+                            :closure-defines {atd.config/sanity-endpoint "https://sfsmp6cu.api.sanity.io/v2021-10-21/data/query/production?query="}}}}
 
   :release
   {:target     :browser
@@ -25,4 +26,5 @@
    {:app {:init-fn atd.core/init!}}
    :compiler-options {:output-feature-set :es7
                       :optimizations :advanced
-                      :pretty-print false}}}}
+                      :pretty-print false
+                      :closure-defines {atd.config/sanity-endpoint "https://sfsmp6cu.api.sanity.io/v2021-10-21/data/query/production?query="}}}}}

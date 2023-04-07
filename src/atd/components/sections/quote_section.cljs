@@ -9,11 +9,27 @@
             [atd.lib.defnc :refer [defnc]]))
 
 (defnc quote-section [{:keys [gradient-class
-                              container-ref
                               quote
                               header
-                              is-visible?]}]
-  (let [outer-ctx (hooks/use-ref "outer-ctx")
+                              is-visible?
+                              children
+                              from
+                              to]}]
+  (let [from-transition (if from
+                          (clj->js from)
+                          #js{:opacity 0
+                              :duration 0.5
+                              :ease "expo.inOut",
+                              :stagger 0.1})
+
+        to-transition (if to
+                        (clj->js to)
+                        #js{:opacity 1
+                            :duration 0.15
+                            :ease "expo.inOut",
+                            :stagger 0.025})
+
+        outer-ctx (hooks/use-ref "outer-ctx")
         text-ref (hooks/use-ref "text-ref")
         [tl _] (hooks/use-state (new (.-timeline gsap) #js{:paused true}))
 
@@ -33,15 +49,8 @@
 
            ctx (.context gsap (fn []
                                 (-> tl
-                                    (.from chars #js{:opacity 0
-                                                     :duration 0.5
-                                                     :ease "expo.inOut",
-                                                     :stagger 0.1})
-                                    (.to chars #js{:opacity 1
-
-                                                   :duration 0.15
-                                                   :ease "expo.inOut",
-                                                   :stagger 0.025})))
+                                    (.from chars from-transition)
+                                    (.to chars to-transition)))
                          outer-ctx)]
        (fn [] (.revert ctx))))
 
@@ -60,14 +69,16 @@
                              items-center
                              justify-center"
                             " "
-                            (if gradient-class
-                              gradient-class
-                              "orange-grad"))}
+                            (when gradient-class
+                              gradient-class))}
 
                (d/div {:ref text-ref
-                       :class "text-white flex items-center justify-center h-full flex-col md:w-3/4 w-3/4"}
-                      (d/p {:class "text-4xl md:text-5xl font-bold mb-2"} header)
-                      (d/div (mapv (fn [line]
-                                     (d/p {:key line
-                                           :class "text-2xl md:text-4xl"} line))
-                                   quote))))))
+                       :class "w-full h-full items-center justify-center flex"}
+                      (if children
+                        children
+                        (d/div {:class "text-white flex items-center justify-center h-full flex-col md:w-3/4 w-3/4"}
+                               (d/p {:class "text-4xl md:text-5xl font-bold mb-2"} header)
+                               (d/div (mapv (fn [line]
+                                              (d/p {:key line
+                                                    :class "text-2xl md:text-4xl"} line))
+                                            quote))))))))
