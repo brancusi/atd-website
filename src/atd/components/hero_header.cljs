@@ -44,7 +44,8 @@
                                                   :duration 0.5
                                                   :ease "expo.inOut",
                                                   :stagger 0.02}}
-                            (d/div {:class "text-slate-800 flex items-center justify-center flex-col md:w-4/5 w-4/5 bg-white/50 backdrop-blur-md p-8"}
-                                   (d/p {:class "text-md md:text-xl mb-4"} "I'm Aram. Hello. I help companies build their internal software, systems, and processes so they can run more effeciently.")
+                            (d/div {:class "text-slate-800 flex justify-center flex-col w-4/5 md:w-auto bg-white/50 backdrop-blur-md p-8"}
+                                   (d/p {:class "text-md md:text-xl mb-4"} "I'm Aram. Hello.")
+                                   (d/p {:class "text-md md:text-xl mb-4"} "I help companies build their internal software, systems, and processes so they can run more effeciently.")
                                    (d/p {:class "text-md md:text-xl mb-4"} "I believe in balancing tech and design, supported by the promise of art over science.")
                                    (d/p {:class "text-md md:text-xl"} "Let me help you bring the right solutions into your business."))))))))
