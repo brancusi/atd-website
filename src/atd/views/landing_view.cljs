@@ -56,7 +56,7 @@
                          "What is good" (d/span {:class "font-medium text-pink-600"} " :design ") "and why does it matter?")
 
                     (d/p {:class " mb-8"}
-                         (d/span {:class "font-medium text-pink-600"} ":art ") "may seem to have no place here but it's art that's at the root.")
+                         (d/span {:class "font-medium text-pink-600"} ":art ") "may seem to have no place here, but it's art that's at the root.")
 
                     (d/p {:class " mb-8"}
                          "It's what helps us break with the status quo as individuals and as a business."))))
