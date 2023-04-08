@@ -2,7 +2,7 @@
   (:require [helix.core :refer [$]]
             [helix.hooks :as hooks]
             [helix.dom :as d]
-
+            [atd.utils.gsap :as gsap]
             [atd.lib.defnc :refer [defnc]]))
 
 (defn preload-image
@@ -29,51 +29,46 @@
                :focal-point [0.5 0.5 5]
                :debug? true
                :should-load? true})"
-  [{:keys [src focal-point debug? should-load?]}]
+  [{:keys [src w h fp-x fp-y focal-point should-load? transition on-intro-completed]}]
   (let [ref (hooks/use-ref "lazy-image-ref")
         [loaded? set-loaded!] (hooks/use-state false)
         on-success-handler (hooks/use-callback
-                            :once
+                            [ref]
                             (fn [_]
                               (set-loaded! true)))
         on-error-handler (hooks/use-callback
                           :once
                           (fn [_]
-                            (set-loaded! false)))]
+                            (set-loaded! false)))
+
+        img-src (str src "?w=" w "&h=" h "&fit=crop" "&fp-x=" fp-x "&fp-y=" fp-y "&format=auto ")
+
+
+        img-src-set (str src "?w=" w "&h=" h "&fit=crop" "&fp-x=" fp-x "&fp-y=" fp-y "&format=auto " w "w, "
+                         src "?w=" (int (/ w 1.6)) "&h=" (int (/ h 1.6)) "&fit=crop" "&fp-x=" fp-x "&fp-y=" fp-y "&format=auto " (int (/ w 1.6)) "w, "
+                         src "?w=" (int (/ w 2)) "&h=" (int (/ h 2)) "&fit=crop" "&fp-x=" fp-x "&fp-y=" fp-y "&format=auto " (int (/ w 2)) "w")]
 
     (hooks/use-effect
      [src focal-point should-load?]
      (when (and should-load?
                 (not loaded?))
-       (preload-image src on-success-handler on-error-handler)))
+       (preload-image img-src on-success-handler on-error-handler)))
 
-    (let [debug-param (if debug? "&fp-debug=true" "")
-          [fp-x fp-y fp-z] focal-point
-          fp-param (str "fp-x=" fp-x "&fp-y=" fp-y "&fp-z=" fp-z)
+    (hooks/use-layout-effect
+     [ref loaded? on-intro-completed]
+     (when loaded?
+       (gsap/to ref (merge
+                     transition
+                     {:onComplete on-intro-completed}))))
 
-          has-focal-point? (seq focal-point)
-
-          fp-img-src (str src "?w=640&h=640&fit=crop&crop=focalpoint&" fp-param debug-param)
-          default-img-src (str src "?w=640&h=640&fit=crop")
-
-          img-src (if has-focal-point? fp-img-src default-img-src)
-
-          fp-img-src-set (str src "?w=1024&h=1024&fit=crop&crop=focalpoint&" fp-param debug-param " 1024w, "
-                              src "?w=640&h=640&fit=crop&crop=focalpoint&" fp-param debug-param " 640w, "
-                              src "?w=480&h=480&fit=crop&crop=focalpoint&" fp-param debug-param " 480w")
-
-          default-img-src-set (str src "?w=1024&h=1024&fit=crop" " 1024w, "
-                                   src "?w=640&h=640&fit=crop" fp-param debug-param " 640w, "
-                                   src "?w=480&h=480&fit=crop" fp-param debug-param " 480w")
-          img-src-set (if has-focal-point? fp-img-src-set default-img-src-set)]
-
-      (if loaded?
-        (d/img {:ref ref
-                :class "object-cover w-full h-full"
-                :srcSet img-src-set
-                :src img-src
-                :sizes "(min-width: 36em) 33.3vw, 100vw"})
-        (d/div {:class "w-full h-full bg-gray-200"})))))
+    (d/div {:ref ref
+            :class "w-full h-full opacity-0"}
+           (if loaded?
+             (d/img {:class "object-cover w-full h-full"
+                     :srcSet img-src-set
+                     :src img-src
+                     :sizes "(min-width: 36em) 33.3vw, 100vw"})
+             (d/div {:class "w-full h-full bg-gray-200"})))))
 
 
 

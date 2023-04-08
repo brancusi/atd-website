@@ -1,11 +1,13 @@
 (ns atd.views.landing-view
   (:require [atd.components.section :refer [section]]
             [atd.components.sections.quote-section :refer [quote-section]]
+            [atd.components.sections.video-section :refer [video-section]]
             [atd.components.sections.what-section :refer [what-section]]
             [atd.components.sections.contact-section :refer [contact-section]]
             [atd.lib.defnc :refer [defnc]]
             [atd.reducers.requires]
             [atd.components.hero-header :refer [hero-header]]
+            [atd.hooks.use-media-query :refer [use-media-query]]
             [helix.core :refer [$]]
             [helix.dom :as d]
             [helix.hooks :as hooks]))
@@ -16,7 +18,8 @@
              (d/p {:class "text-4xl"} title)))
 
 (defnc landing-view []
-  (let [container-ref (hooks/use-ref "container-ref")]
+  (let [container-ref (hooks/use-ref "container-ref")
+        is-desktop? (use-media-query :md)]
 
     ($ :div {:ref container-ref
              :class ""}
@@ -25,6 +28,12 @@
           {:key "hero"
            :section-id "hero"}
           ($ hero-header))
+
+       (when is-desktop?
+         ($ section
+            {:key "video"
+             :section-id "video"}
+            ($ video-section)))
 
        ($ section
           {:key "about-tech"
@@ -68,14 +77,13 @@
                             :gradient-class "blue-grad"
                             :section-id "doing"
                             :header "Doing"
-                            :quote ["Working with people I love"
-                                    "Building beautiful things"]}))
+                            :quote ["Building systems that make other systems better."
+                                    "For people pushing to do better."]}))
 
        ($ section
           {:key "what"
            :section-id "what"}
           ($ what-section {:class ""
-                           :force-on? false
                            :gradient-class "purple-grad"
                            :section-id "what"}))
 

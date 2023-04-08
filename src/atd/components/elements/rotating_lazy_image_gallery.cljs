@@ -23,9 +23,9 @@
         next-view-stack (if needs-culling?
                           (rest view-stack)
                           view-stack)
-        new-view {:id (nano-id)
-                  :index idx
-                  :src (:src image-data)}]
+        new-view (merge image-data
+                        {:id (nano-id)
+                         :index idx})]
 
     {:new-view new-view
      :new-stack (conj (vec next-view-stack) new-view)}))
@@ -37,12 +37,11 @@
            should-load?
            should-play?]}]
   (let [[view-stack set-view-stack!] (hooks/use-state [])
-        current-active-ref (hooks/use-ref "current-active-ref")
         [ready-for-next? set-ready-for-next!] (hooks/use-state false)
         [current-image-index set-current-image-index!] (hooks/use-state 0)
         [current-image-view set-current-image-view!] (hooks/use-state nil)
         on-intro-complete (hooks/use-callback
-                           [images view-stack]
+                           :once
                            (fn []
                              (set-ready-for-next! true)))]
 
@@ -72,21 +71,19 @@
        (fn []
          (js/clearInterval interval-id))))
 
-    ;; Animate image in
-    (hooks/use-layout-effect
-     [current-active-ref view-stack]
-     (gsap/to current-active-ref (merge
-                                  transition
-                                  {:onComplete on-intro-complete})))
-
     (d/div {:class "relative w-full h-full"}
            (when should-load?
              (mapv (fn
-                     [{:keys [id src]}]
+                     [{:keys [id src fp]}]
                      (d/div {:key id
-                             :ref current-active-ref
-                             :class "absolute w-full h-full opacity-0"}
+                             :class "absolute w-full h-full"}
                             ($ lazy-image
                                {:src src
+                                :fp-x (:x fp)
+                                :fp-y (:y fp)
+                                :w (window-utils/width)
+                                :h (window-utils/height)
+                                :transition transition
+                                :on-intro-completed on-intro-complete
                                 :should-load? true})))
                    view-stack)))))

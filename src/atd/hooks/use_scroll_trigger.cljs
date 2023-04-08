@@ -29,7 +29,6 @@
     (hooks/use-effect
      [ref scroll-ref]
      (let [st (.create ScrollTrigger #js{:trigger @ref
-
                                          :start start
                                          :end end
                                          :onRefresh (fn [_])
@@ -43,31 +42,5 @@
                                                        (on-toggle self)))
                                          :markers markers?})]
 
-       (fn []
-         (.kill st))))
-
+       (fn [] (.kill st))))
     [visited? is-active?]))
-
-
-    ;; (hooks/use-layout-effect
-    ;;  [ref]
-
-#_(when (.isInViewport ScrollTrigger @ref)
-    (set-is-active! true))
-
-    ;; (hooks/use-layout-effect
-    ;;  [ref]
-    ;;  (let [st (.create ScrollTrigger
-    ;;                    #js{:trigger @ref
-    ;;                        :onRefreshInit
-    ;;                        (fn [self]
-    ;;                          (let [{:as size-info
-    ;;                                 :keys [current-scroll trigger-start]} (check-positioning self)]
-    ;;                            (when debug?
-    ;;                              (aset js/window "ATD_DEBUG_$1" self)
-    ;;                              (tap> {:size-info size-info}))
-    ;;                            (when (> current-scroll trigger-start)
-    ;;                              (set-is-active! true))))})]
-
-    ;;    (fn []
-    ;;      (.kill st))))

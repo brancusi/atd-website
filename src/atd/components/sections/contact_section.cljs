@@ -3,8 +3,10 @@
             [helix.hooks :as hooks]
             [helix.dom :as d]
             ["gsap" :refer [gsap]]
+            [atd.components.elements.rotating-lazy-image-gallery :refer [rotating-lazy-image-gallery]]
             [atd.hooks.use-scroll-trigger :refer [use-scroll-trigger]]
             ["gsap/SplitText" :refer [SplitText]]
+            [atd.api.cms :refer [get-gallery-images!] :as cms]
             [atd.components.elements.lazy-image :refer [lazy-image]]
             [applied-science.js-interop :as j]
             [atd.lib.defnc :refer [defnc]]))
@@ -13,44 +15,66 @@
                                 is-visible?
                                 force-on?]}]
   (let [outer-ctx (hooks/use-ref "outer-ctx")
+        [background-images set-background-images!] (hooks/use-state nil)
+
         [visited? is-active?] (use-scroll-trigger outer-ctx)]
+
+    (hooks/use-effect
+     :once
+     (get-gallery-images! "various-tech-shots" set-background-images!))
 
     (d/section {:ref outer-ctx
                 :class "h-screen 
                     w-screen
                     flex
-                    items-center
-                    bg-black
+                    items-end
+                    justify-center
+                    
+                    bg-slate-700
                     relative"}
 
                (hooks/use-memo
-                [visited?]
-                ($ lazy-image {:class "z-10 absolute"
-                               :src "https://atddev.imgix.net/az-portrait.tif?fm=jpg&w=1500&q=60"
-                               :focal-point [0.7, 0.7, 1]
-                               :should-load? visited?}))
-               #_(d/img {:src "https://atddev.imgix.net/az-portrait.tif?fm=jpg&w=1500&q=60"
-                         :class "z-10
-                           object-cover w-full h-full absolute"})
+                [is-active? visited? background-images]
+                (d/div {:class "z-10 absolute w-full h-full"}
+                       ($ rotating-lazy-image-gallery {:images background-images
+                                                       :transition {:duration 0.3
+                                                                    :opacity 1}
+                                                       :should-play? is-active?
+                                                       :should-load? visited?
+                                                       :rate 3000})))
 
-               #_(d/div
-                  {:class "flex flex-col w-1/2 z-20 items-center justify-center"} ; Add items-center and justify-center here
 
-                  (d/div
-                   {:class "flex flex-col md:w-auto justify-center"} ; Change flex-1 to w-auto
-                   (d/div
-                    {:class "font-fira-code
+               (d/div
+                {:class "flex flex-col w-full h-2/5 z-20 items-center justify-center bg-black/50 backdrop-blur-sm"} ; Add items-center and justify-center here
+                (d/div {:class "flex flex-col justify-between w-4/5 h-4/5"}
+                       (d/div
+                        {:class "
+                                  font-fira-code
+                                  font-light
+                                  italic
+                                  text-white
+                                  text-md
+                                  "}
+                        "If you want to know something. Become that thing, and then study yourself.")
+
+                       (d/div
+                        (d/div
+                         {:class "font-fira-code
+                                  font-light
+                                  text-white
+                                  text-2xl"}
+                         "Why not reach out?")
+
+                        (d/a
+                         {:href "mailto:az@atd.dev?subject=Let's%20build"
+                          :target "_blank"
+                          :class "font-fira-code
                       font-light
-                      text-white
-                      text-4xl"}
-                    "Let's play")
-
-                   (d/a
-                    {:href "mailto:az@atd.dev?subject=Let's%20play"
-                     :target "_blank"
-                     :class "font-fira-code
-                      font-light
-                      text-fuchsia-600 
-                      text-4xl
+                      text-slate-300 
+                      text-2xl
                       "}
-                    "az@atd.dev"))))))
+                         "az@atd.dev"))
+
+                       (d/div {:class "flex"}
+                              (d/span {:class "text-xs text-white font-fira-code font-light"}
+                                      "Copyright © 2023 Art Tech Design Inc.")))))))

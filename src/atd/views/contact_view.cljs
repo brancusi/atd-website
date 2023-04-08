@@ -22,5 +22,6 @@
                 :onComplete outro-complete-callback
                 :duration 1})))
 
-    (d/div {:ref comp-ref}
+    (d/div {:ref comp-ref
+            :class "text-white"}
            (d/p "Contact"))))
