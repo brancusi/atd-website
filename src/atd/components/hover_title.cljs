@@ -6,7 +6,7 @@
             [atd.lib.defnc :refer [defnc]]))
 
 (defnc hover-title [{:keys [title hover-title-ref]}]
-  (d/div {:class "absolute massive-title h-full w-full"
+  (d/div {:class "absolute massive-title h-full w-full pointer-events-none"
           :ref hover-title-ref}
          (d/svg {:class "justify-self-start"
                  :height "100%"

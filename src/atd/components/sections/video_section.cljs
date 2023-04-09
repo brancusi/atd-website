@@ -6,6 +6,7 @@
             [atd.hooks.use-scroll-trigger :refer [use-scroll-trigger]]
             [atd.lib.defnc :refer [defnc]]
             [atd.providers.main-provider :refer [use-main-state]]
+
             [helix.core :refer [$]]
             [helix.dom :as d]
             [helix.hooks :as hooks]))
@@ -66,18 +67,21 @@
                                       #js{:opacity 0
                                           :duration 0.2})))]
 
-    (d/div {:id "hero"
+    (d/div {:id "video"
             :ref outer-ctx
             :class "relative
-                    h-screen
+                    h-full
+                    w-full
+                    
                     overflow-hidden"}
 
            (d/div {:class "w-screen h-screen 
-                           hidden md:flex 
+                           flex
                            relative 
                            flex items-center justify-items-center justify-center"}
 
-                  ($ video-background)
+                  ($ video-background {:playback-id "l02cq1uS4sXBEGdQJNdYVDL7KoTNEreRDJymmk01NSN7c"
+                                       :should-play? is-active?})
 
                   ($ hover-title
                      {:hover-title-ref hover-title-ref

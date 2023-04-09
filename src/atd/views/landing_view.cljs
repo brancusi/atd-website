@@ -7,33 +7,40 @@
             [atd.lib.defnc :refer [defnc]]
             [atd.reducers.requires]
             [atd.components.hero-header :refer [hero-header]]
+            [atd.components.navs.progress-menu :refer [progress-menu]]
+            [atd.components.sections.mobile-hero-section :refer [mobile-hero-section]]
             [atd.hooks.use-media-query :refer [use-media-query]]
+
             [helix.core :refer [$]]
             [helix.dom :as d]
             [helix.hooks :as hooks]))
 
-(defnc landing-section [{:keys [section-id title]}]
-  (d/section {:id section-id
-              :class " h-full w-full orange-grad"}
-             (d/p {:class "text-4xl"} title)))
-
 (defnc landing-view []
   (let [container-ref (hooks/use-ref "container-ref")
+        #_#_current-index (use-scroll-progress 6 container-ref {:throttle-interval 200})
         is-desktop? (use-media-query :md)]
 
     ($ :div {:ref container-ref
              :class ""}
 
-       ($ section
-          {:key "hero"
-           :section-id "hero"}
-          ($ hero-header))
+       (d/div {:class "fixed z-20 justify-center items-center top-1/2 -translate-y-1/2 left-2"}
+              ($ progress-menu {:total-sections 6}))
 
-       (when is-desktop?
+       (if is-desktop?
          ($ section
             {:key "video"
              :section-id "video"}
-            ($ video-section)))
+            ($ video-section))
+         ($ section
+            {:key "mobile-hero"
+             :section-id "mobile-hero"}
+            ($ mobile-hero-section)))
+
+       (when is-desktop?
+         ($ section
+            {:key "hero"
+             :section-id "hero"}
+            ($ hero-header)))
 
        ($ section
           {:key "about-tech"
