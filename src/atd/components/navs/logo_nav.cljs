@@ -31,6 +31,21 @@
 
     (d/div {:ref comp-ref
             :class "fixed 
+                    opacity-90
+                    
+                    z-30
+                    text-xl
+                    
+                    ml-4
+                    mt-4
+                    
+                    
+                    w-1/5
+                    md:w-32
+                    "}
+           (d/img {:src "images/graphics/medium_pink.png"}))
+    #_(d/div {:ref comp-ref
+              :class "fixed 
                     opacity-70
                     cursor-pointer
                     font-fira-code
@@ -48,7 +63,9 @@
                     py-3 md:py-3 
                     w-1/3
                     md:w-auto
-                    "} (str "[:art :tech :design]"))))
+                    "}
+
+             (str "[:art :tech :design]"))))
 
 
 

@@ -1,9 +1,9 @@
 ### Dev
 
-To build css
+Start dev
 
 ```bash
-npm run postcss:watch
+npm run dev
 ```
 
 Jack in via calva, shadow-cljs -> :app
