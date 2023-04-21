@@ -99,7 +99,6 @@
                             :quote ["Making immutable data move."
                                     "Making moving images that make people stop."]}))
 
-
        ($ section
           {:key "what"
            :section-id "what"}
