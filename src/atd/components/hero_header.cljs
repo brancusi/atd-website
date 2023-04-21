@@ -4,6 +4,7 @@
             [atd.components.elements.rotating-lazy-image-gallery :refer [rotating-lazy-image-gallery]]
             [atd.components.sections.quote-section :refer [quote-section]]
             [atd.hooks.use-scroll-trigger :refer [use-scroll-trigger]]
+            [atd.components.fragments.about-me :refer [about-me]]
             [atd.lib.defnc :refer [defnc]]
             [helix.core :refer [$]]
             [helix.dom :as d]
@@ -44,8 +45,4 @@
                                                   :duration 0.5
                                                   :ease "expo.inOut",
                                                   :stagger 0.02}}
-                            (d/div {:class "text-slate-800 flex justify-center flex-col w-4/5 md:w-auto bg-white/50 backdrop-blur-md p-8"}
-                                   (d/p {:class "text-md md:text-xl mb-4"} "I'm Aram. Hello.")
-                                   (d/p {:class "text-md md:text-xl mb-4"} "I help companies build their internal software, systems, and processes so they can run more efficiently.")
-                                   (d/p {:class "text-md md:text-xl mb-4"} "I believe in balancing tech and design, supported by the promise of art over science.")
-                                   (d/p {:class "text-md md:text-xl"} "Let me help you bring the right solutions into your business."))))))))
+                            ($ about-me)))))))

@@ -100,45 +100,4 @@
                                                                                :copy copy
                                                                                :url url
                                                                                :is-last? is-last?}))))))
-                                            what-data)))))
-
-               #_(d/div {:ref text-ref
-                         :class "text-white flex items-center justify-center h-full flex-col w-4/5"}
-                        (d/p {:class "text-2xl font-bold mb-2"} "What")
-                        (d/div {:class "flex flex-col"}
-                               (d/div {:class "text-lg space-y-4"}
-                                      (d/div {:class "flex "}
-                                             (d/div {:class "flex-grow"}
-                                                    ":build")
-                                             (d/div {:class "w-3/5"}
-                                                    "apps, systems, processes"))
-                                      (d/div {:class "flex"}
-                                             (d/div {:class "flex-grow"}
-                                                    ":with")
-                                             (d/div {:class "w-3/5"}
-                                                    "clj, cljs, ts, js"))
-                                      (d/div {:class "flex "}
-                                             (d/div {:class "flex-grow"}
-                                                    ":store")
-                                             (d/div {:class "w-3/5"}
-                                                    "postgres, datomic, datascript, asami"))
-                                      (d/div {:class "flex "}
-                                             (d/div {:class "flex-grow"}
-                                                    ":proto")
-                                             (d/div {:class "w-3/5"}
-                                                    "retool, make, fibery, coda"))
-                                      (d/div {:class "flex "}
-                                             (d/div {:class "flex-grow"}
-                                                    ":finish")
-                                             (d/div {:class "w-3/5"}
-                                                    "helix, fulcro, reframe, remix, nextjs"))
-                                      (d/div {:class "flex "}
-                                             (d/div {:class "flex-grow"}
-                                                    ":for")
-                                             (d/div {:class "w-3/5"}
-                                                    "startups, smb"))
-                                      (d/div {:class "flex "}
-                                             (d/div {:class "flex-grow"}
-                                                    ":where")
-                                             (d/div {:class "w-3/5"}
-                                                    "beauty matters"))))))))
+                                            what-data))))))))

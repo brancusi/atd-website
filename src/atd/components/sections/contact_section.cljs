@@ -1,5 +1,6 @@
 (ns atd.components.sections.contact-section
   (:require [helix.core :refer [$]]
+            [atd.components.sections.video-section :refer [video-section]]
             [helix.hooks :as hooks]
             [helix.dom :as d]
             ["gsap" :refer [gsap]]
@@ -36,12 +37,16 @@
                (hooks/use-memo
                 [is-active? visited? background-images]
                 (d/div {:class "z-10 absolute w-full h-full"}
-                       ($ rotating-lazy-image-gallery {:images background-images
-                                                       :transition {:duration 0.3
-                                                                    :opacity 1}
-                                                       :should-play? is-active?
-                                                       :should-load? visited?
-                                                       :rate 3000})))
+                       (d/div {:class "w-screen h-screen relative"}
+                              (d/div {:class "absolute w-full h-full"}
+                                     ($ video-section {:playback-id "00nSnRtn1iiwDRr7LaRfgALt4fZz2uWqXg9Ry9hx1loU"})))
+                       #_($ video-section {:playback-id "4xg96n14D7TLhM5S02g2v4kUD00gpNMpyYLNGGcyk8U3k"})
+                       #_($ rotating-lazy-image-gallery {:images background-images
+                                                         :transition {:duration 0.3
+                                                                      :opacity 1}
+                                                         :should-play? is-active?
+                                                         :should-load? visited?
+                                                         :rate 3000})))
 
 
                (d/div

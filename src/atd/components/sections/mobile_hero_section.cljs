@@ -2,6 +2,7 @@
   (:require [atd.components.elements.video-background :refer [video-background]]
             [atd.hooks.use-scroll-trigger :refer [use-scroll-trigger]]
             [atd.lib.defnc :refer [defnc]]
+            [atd.components.fragments.about-me :refer [about-me]]
             [atd.providers.main-provider :refer [use-main-state]]
             [atd.components.writing-card :refer [writing-card]]
             [helix.core :refer [$]]
@@ -31,8 +32,4 @@
                                        :should-play? is-active?})
 
                   ($ writing-card
-                     (d/div {:class "text-slate-800 flex justify-center flex-col w-4/5 md:w-auto bg-white/50 backdrop-blur-md p-8"}
-                            (d/p {:class "text-md md:text-xl mb-4"} "I'm Aram. Hello.")
-                            (d/p {:class "text-md md:text-xl mb-4"} "I help companies build their internal software, systems, and processes so they can run more efficiently.")
-                            (d/p {:class "text-md md:text-xl mb-4"} "I believe in balancing tech and design, supported by the promise of art over science.")
-                            (d/p {:class "text-md md:text-xl"} "Let me help you bring the right solutions into your business.")))))))
+                     ($ about-me))))))

@@ -3,7 +3,6 @@
             [helix.hooks :as hooks]
             [helix.dom :as d]
             [atd.components.ui.playable-text :refer [playable-text]]
-            [applied-science.js-interop :as j]
             [atd.lib.defnc :refer [defnc]]))
 
 (defnc nav-link [{:keys [on-click-handler
@@ -14,23 +13,7 @@
                          section-id]}]
   (let [ref (hooks/use-ref "link-ref")
         [is-hovering? set-is-hovering!] (hooks/use-state false)]
-    #_(d/svg {:class "justify-self-start"
-              :height "4em"
 
-
-              :on-mouse-over (fn []
-                               (on-mouse-over-handler {:section-id section-id}))
-              :on-mouse-out (fn []
-                              (on-mouse-out-handler {:section-id section-id}))
-              :on-click (fn []
-                          (on-click-handler {:section-id section-id}))}
-
-             (d/text {:class "flash-text"
-
-                      :text-anchor "start"
-                      :alignment-baseline "middle"
-                      :y "50%"
-                      :x "0"} title))
     (d/div (d/a {:key section-id
                  :ref ref
                  :class "
@@ -40,6 +23,7 @@
                   font-medium
                   text-6xl"
                  :on-mouse-over (fn []
+                                  (tap> "mouse over")
                                   (set-is-hovering! true)
                                   (on-mouse-over-handler {:section-id section-id}))
                  :on-mouse-out (fn []
@@ -48,17 +32,7 @@
                  :on-click (fn []
                              (on-click-handler {:section-id section-id}))}
 
-                title
-                #_(d/svg {:class "border-2 border-green-500"
-
-                          :height "1em"}
-
-                         (d/text {:class "flash-text"
-
-                                  :text-anchor "start"
-                                  :alignment-baseline "middle"
-                                  :y "50%"
-                                  :x "0"} title)))
+                title)
            (d/div {:class "whitespace-nowrap
                                                 absolute
                                                 translate-x-full
@@ -70,7 +44,3 @@
                                                 "}
                   ($ playable-text {:text writing
                                     :is-playing? is-hovering?})))))
-
-;; <svg version= "1.1" xmlns= "//www.w3.org/2000/svg" xmlns:xlink= "//www.w3.org/1999/xlink" width= "100%" >
-;; <text class= "stroke-text" x= "50%" y= "50%" >SVG STROKE TEXT</text>
-;; </svg>

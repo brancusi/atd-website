@@ -10,6 +10,7 @@
             [atd.components.navs.progress-menu :refer [progress-menu]]
             [atd.components.sections.mobile-hero-section :refer [mobile-hero-section]]
             [atd.hooks.use-media-query :refer [use-media-query]]
+            [atd.components.playful-titles :refer [playful-titles]]
 
             [helix.core :refer [$]]
             [helix.dom :as d]
@@ -30,7 +31,11 @@
          ($ section
             {:key "video"
              :section-id "video"}
-            ($ video-section))
+            (d/div {:class "w-screen h-screen relative"}
+                   (d/div {:class "absolute w-full h-full"}
+                          ($ video-section {:playback-id "l02cq1uS4sXBEGdQJNdYVDL7KoTNEreRDJymmk01NSN7c"}))
+                   (d/div {:class "absolute w-full h-full pointer-events-none"}
+                          ($ playful-titles))))
          ($ section
             {:key "mobile-hero"
              :section-id "mobile-hero"}
@@ -70,6 +75,13 @@
 
 
        ($ section
+          {:key "video-section"
+           :section-id "video-section"}
+          (d/div {:class "w-screen h-screen relative"}
+                 (d/div {:class "absolute w-full h-full"}
+                        ($ video-section {:playback-id "4xg96n14D7TLhM5S02g2v4kUD00gpNMpyYLNGGcyk8U3k"}))))
+
+       ($ section
           {:key "main-quote"
            :section-id "main-quote"}
           ($ quote-section {:section-id "main-quote"
@@ -83,9 +95,9 @@
           ($ quote-section {:class ""
                             :gradient-class "blue-grad"
                             :section-id "doing"
-                            :header "Doing"
-                            :quote ["Building systems that make other systems better."
-                                    "For people pushing to do better."]}))
+                            :header "What I Love"
+                            :quote ["Making immutable data move."
+                                    "Making moving images that make people stop."]}))
 
        ($ section
           {:key "what"
@@ -98,5 +110,5 @@
        ($ section
           {:key "contact"
            :section-id "contact"}
-          ($ contact-section {:force-on? true
+          ($ contact-section {:force-on? false
                               :section-id "contact"})))))
