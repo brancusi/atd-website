@@ -12,6 +12,14 @@ Fire up http://localhost:4200/
 
 ### Deployment
 
+Log into the correct netlify account
+
+```
+netlify sites:list
+```
+
+Make sure the atd site is listed
+
 ```
 npm run release
 netlify deploy --prod
