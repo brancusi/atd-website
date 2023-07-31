@@ -73,7 +73,6 @@
                     (d/p {:class " mb-8"}
                          "It's what helps us break with the status quo as individuals and as a business."))))
 
-
        ($ section
           {:key "video-section"
            :section-id "video-section"}
@@ -99,14 +98,12 @@
                             :quote ["Making immutable data move."
                                     "Making moving images that make people stop."]}))
 
-
        ($ section
           {:key "what"
            :section-id "what"}
           ($ what-section {:class ""
                            :gradient-class "purple-grad"
                            :section-id "what"}))
-
 
        ($ section
           {:key "contact"
