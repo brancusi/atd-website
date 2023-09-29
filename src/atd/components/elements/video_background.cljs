@@ -27,7 +27,7 @@
          (when (not (j/get @video-ref :paused))
            (.pause @video-ref)))))
 
-    (d/div {:class "w-full h-full relative"}
+    (d/div {:class "w-full h-full relative background-video"}
            ($ MuxPlayer
               {:playbackId playback-id
                :ref video-ref

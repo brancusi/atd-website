@@ -77,7 +77,7 @@
     z-index: -1;
 }
 
-mux-player {
+.background-video mux-player {
   --media-object-fit: cover;
   --media-object-position: center;
   /* Hide all controls at once */

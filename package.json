@@ -13,6 +13,8 @@
     "postcss:release": "cross-env NODE_ENV=production postcss resources/css/tailwind.css -o ./release/css/main.css --verbose",
     "fonts:release": "cp -rf ./resources/fonts ./release/",
     "images:release": "cp -rf ./resources/images ./release/",
+    "misc:release": "cp -rf ./resources/misc/* ./release/",
+    "misc:dev": "cp -rf ./resources/misc/* ./public/",
     "html:release": "cp ./public/*.html ./release/",
     "release": "run-s *:release",
     "dev": "run-p -l *:dev",

@@ -5,6 +5,7 @@
             [atd.views.contact-view :as contact-view]
             [atd.views.landing-view :as landing-view]
             [atd.views.services-view :as services-view]
+            [atd.views.screening-view :as screening-view]
             [helix.hooks :as hooks]
             [reitit.frontend :as rf]
             [reitit.frontend.controllers :as rfc]
@@ -22,30 +23,37 @@
                 :path "about"
                 :title "About"
                 :view about-view/about-view}
+               {:id ::screening
+                :path "screening"
+                :title "Screening"
+                :view screening-view/screening-view}
                {:id ::contact
                 :path "contact"
                 :title "Contact"
                 :view contact-view/contact-view}])
 
-(def routes
-  (rf/router
-   ["/"
-    [""
-     {:name :home
-      :view landing-view/landing-view
-      :controllers [{:start (log-fn "start" "landing controller")
-                     :stop (log-fn "stop" "landing controller")}]}]
+(defn routes
+  []
+  (into ["/"
+         [""
+          {:name :home
+           :view landing-view/landing-view
+           :controllers [{:start (log-fn "start" "landing controller")
+                          :stop (log-fn "stop" "landing controller")}]}]]
+        (map (fn [{:keys [id path view]}]
+               [path
+                {:name id
+                 :view view
+                 :controllers [{:start (log-fn (str "start!!!" id))
+                                :stop (log-fn (str "stop!!!" id))}]}])
+             site-map)))
 
-    (map (fn [{:keys [id path view]}]
-           [path
-            {:name id
-             :view view
-             :controllers [{:start (log-fn (str "start!!!" id))
-                            :stop (log-fn (str "stop!!!" id))}]}])
-         site-map)]
+(comment
 
-   {:data {:controllers [{:start (log-fn "start" "root-controller")
-                          :stop (log-fn "stop" "root controller")}]}}))
+  (routes)
+
+;;Keep from folding
+  )
 
 (defnc router
   [{:keys [children]}]
@@ -56,6 +64,7 @@
         route-change-callback (hooks/use-callback
                                [state]
                                (fn [new-route]
+                                 (js/console.log new-route)
                                  (let [old-route (:current-route state)]
                                    (rfc/apply-controllers old-route new-route))
                                  (dispatch! [:enter-route! new-route])))]
@@ -64,9 +73,12 @@
      :once
 
      (rfe/start!
-      routes
+      (rf/router
+       (routes)
+       {:data {:controllers [{:start (log-fn "start" "root-controller")
+                              :stop (log-fn "stop" "root controller")}]}})
       route-change-callback
-      {:use-fragment true})
+      {:use-fragment false})
 
      (set-is-ready! true))
 
