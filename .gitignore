@@ -30,3 +30,6 @@ cljs-runtime
 
 # Local Netlify folder
 .netlify
+
+# NPM greensock related
+.npmrc
