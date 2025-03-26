@@ -38,7 +38,7 @@ Log into the correct netlify account
 netlify sites:list
 ```
 
-Make sure the atd site is listed
+Make sure the atd site is listed, so you know you are logged into the right account
 
 ```
 npm run release

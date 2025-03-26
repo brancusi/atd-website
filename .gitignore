@@ -28,6 +28,9 @@ media_server
 cljs-runtime
 .DS_Store
 
+# Clojure related
+.portal
+
 # Local Netlify folder
 .netlify
 

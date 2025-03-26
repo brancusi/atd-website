@@ -1,24 +1,18 @@
 (ns atd.components.hero-header
-  (:require [atd.api.cms]
-            [atd.api.cms :refer [get-gallery-images!] :as cms]
-            [atd.components.elements.rotating-lazy-image-gallery :refer [rotating-lazy-image-gallery]]
-            [atd.components.sections.quote-section :refer [quote-section]]
-            [atd.hooks.use-scroll-trigger :refer [use-scroll-trigger]]
-            [atd.components.fragments.about-me :refer [about-me]]
-            [atd.lib.defnc :refer [defnc]]
-            [helix.core :refer [$]]
-            [helix.dom :as d]
-            [helix.hooks :as hooks]))
+  (:require
+   [atd.components.fragments.about-me :refer [about-me]]
+   [atd.components.sections.quote-section :refer [quote-section]]
+   [atd.components.sections.video-section :refer [video-section]]
+   [atd.hooks.use-scroll-trigger :refer [use-scroll-trigger]]
+   [atd.lib.defnc :refer [defnc]]
+   [helix.core :refer [$]]
+   [helix.dom :as d]
+   [helix.hooks :as hooks]))
 
 (defnc hero-header
   []
   (let [outer-ctx (hooks/use-ref "outer-ctx")
-        [visited? is-active?] (use-scroll-trigger outer-ctx {:end "bottom"})
-        [hero-images set-hero-images!] (hooks/use-state [])]
-
-    (hooks/use-effect
-     :once
-     (get-gallery-images! "clojure-poem" set-hero-images!))
+        [visited? is-active?] (use-scroll-trigger outer-ctx {:end "bottom"})]
 
     (d/div {:id "hero"
             :ref outer-ctx
@@ -32,12 +26,7 @@
                            flex items-center
                            justify-items-center justify-center"}
                   (d/div {:class "z-10 absolute w-full h-full"}
-                         ($ rotating-lazy-image-gallery {:images hero-images
-                                                         :transition {:duration 0.2
-                                                                      :opacity 1}
-                                                         :should-play? is-active?
-                                                         :should-load? visited?
-                                                         :rate 50}))
+                         ($ video-section {:playback-id "Izp5007Abkc00t4Ubns7pAiqq2zG7JIp01tvAoaVOny7O00"}))
                   (d/div {:class "z-20 absolute w-full h-full"}
                          (d/div {:class "w-full h-full absolute pink-grad opacity-30"})
                          ($ quote-section {:section-id "main-quote"

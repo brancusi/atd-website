@@ -82,4 +82,4 @@
 
                        (d/div {:class "flex"}
                               (d/span {:class "text-xs text-white font-fira-code font-light"}
-                                      "Copyright © 2024 Art Tech Design Inc.")))))))
+                                      "Copyright © 2025 Art Tech Design Inc.")))))))
